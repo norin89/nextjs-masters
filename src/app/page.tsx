@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { LinkBox } from '@ui/atomos';
+import { LinkBox } from '@/ui/atomos';
 
 export default function Home() {
 	return (

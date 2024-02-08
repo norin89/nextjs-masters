@@ -14,6 +14,12 @@ const preview: Preview = {
 				date: /Date$/i,
 			},
 			expanded: true,
+			exclude: ['className'],
+		},
+		options: {
+			storySort: {
+				order: ['General', 'Atoms', 'Molecules', 'Organisms'],
+			},
 		},
 	},
 	decorators: [

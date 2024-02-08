@@ -1,86 +1,73 @@
-import Image from 'next/image';
-import { LinkBox } from '@ui/atomos';
+import { ProductsList } from '@/ui/organisms';
 
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-				<p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-					Get started by editing&nbsp;
-					<code className="font-mono font-bold">src/app/page.tsx</code>
-				</p>
-				<div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-					<a
-						className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-						href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						By{' '}
-						<Image
-							src="/vercel.svg"
-							alt="Vercel Logo"
-							className="dark:invert"
-							width={100}
-							height={24}
-							priority
-						/>
-					</a>
-				</div>
-			</div>
-
-			<div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-				<Image
-					className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-					src="/next.svg"
-					alt="Next.js Logo"
-					width={360}
-					height={74}
-					priority
-				/>
-			</div>
-
-			<div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-				<LinkBox
-					link={{
-						text: 'Docs',
-						href: 'https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app',
-						isNewWindow: true,
-					}}
-				>
-					Find in-depth information about Next.js features and API.
-				</LinkBox>
-
-				<LinkBox
-					link={{
-						text: 'Learn',
-						href: 'https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app',
-						isNewWindow: true,
-					}}
-				>
-					Learn about Next.js in an interactive course with&nbsp;quizzes!
-				</LinkBox>
-
-				<LinkBox
-					link={{
-						text: 'Templates',
-						href: 'https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app',
-						isNewWindow: true,
-					}}
-				>
-					Explore starter templates for Next.js.
-				</LinkBox>
-
-				<LinkBox
-					link={{
-						text: 'Deploy',
-						href: 'https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app',
-						isNewWindow: true,
-					}}
-				>
-					Instantly deploy your Next.js site to a shareable URL with Vercel.
-				</LinkBox>
-			</div>
+		<main className="mx-auto flex min-h-screen max-w-screen-2xl flex-col items-center justify-center p-8 md:p-12 lg:p-16 xl:p-24">
+			<ProductsList
+				title="Our products:"
+				products={[
+					{
+						id: '1',
+						name: 'Energy Saving Light Bulbs',
+						category: 'accessories',
+						description:
+							'Illuminate your space efficiently with our Energy Saving Light Bulbs! These eco-friendly bulbs offer bright, long-lasting light while conserving energy and reducing your electricity bills. Upgrade to sustainable lighting today!',
+						price: {
+							value: 2190,
+							currency: 'USD',
+						},
+						image: {
+							src: 'https://prd.place/400?padding=40&id=45',
+							alt: 'Product image',
+						},
+					},
+					{
+						id: '2',
+						name: 'A cup of coffee',
+						category: 'food',
+						description:
+							'Indulge in the rich aroma and bold flavor of our premium cup of coffee. Made from the finest beans, each sip is a delightful experience that awakens your senses. Start your day right with our perfect brew!',
+						price: {
+							value: 350,
+							currency: 'USD',
+						},
+						image: {
+							src: 'https://prd.place/400?padding=40&id=14',
+							alt: 'Product image',
+						},
+					},
+					{
+						id: '3',
+						name: 'Crate of apples',
+						category: 'food',
+						description:
+							'Juicy, crunchy apples to snack on, but keep them away from your coffee mug! Trust us, your stomach will thank you. Happy snacking!',
+						price: {
+							value: 1299,
+							currency: 'USD',
+						},
+						image: {
+							src: 'https://prd.place/400?padding=40&id=22',
+							alt: 'Product image',
+						},
+					},
+					{
+						id: '4',
+						name: 'Scooter',
+						category: 'toys',
+						description:
+							"Get ready for big adventures with our premium Toy Scooter! This matchbox-sized marvel is packed with style and excitement for little ones. But here's the twist: despite its small size, it comes with a premium price tag that mirrors the real deal. So, buckle up and let the fun ride begin!",
+						price: {
+							value: 809900,
+							currency: 'USD',
+						},
+						image: {
+							src: 'https://prd.place/400?padding=40&id=35',
+							alt: 'Product image',
+						},
+					},
+				]}
+			/>
 		</main>
 	);
 }

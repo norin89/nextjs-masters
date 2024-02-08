@@ -1,4 +1,9 @@
+import path from 'path';
 import type { StorybookConfig } from '@storybook/nextjs';
+
+import { compilerOptions } from '../tsconfig.json';
+
+const normalizePath = (p: string): string => p.split('/*').shift() || '';
 
 const config: StorybookConfig = {
 	stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
@@ -12,6 +17,28 @@ const config: StorybookConfig = {
 	framework: {
 		name: '@storybook/nextjs',
 		options: {},
+	},
+	webpackFinal: async (config) => {
+		if (typeof config.resolve === 'undefined') return config;
+
+		config.resolve.alias = {
+			...config.resolve.alias,
+			...Object.entries(compilerOptions.paths).reduce(
+				(aliases, [key, paths]) => ({
+					...aliases,
+					...paths.reduce(
+						(result, p) => ({
+							...result,
+							[normalizePath(key)]: [path.resolve(__dirname, '../', normalizePath(p))],
+						}),
+						{},
+					),
+				}),
+				{},
+			),
+		};
+
+		return config;
 	},
 };
 

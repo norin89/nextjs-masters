@@ -15,6 +15,7 @@ export const Title = ({
 	level,
 	size = level,
 	className,
+	...props
 }: TitleProps & { className?: string }) => {
 	const Component: ElementType = `h${level}`;
 
@@ -31,6 +32,7 @@ export const Title = ({
 				},
 				className,
 			)}
+			{...props}
 		>
 			{children}
 		</Component>

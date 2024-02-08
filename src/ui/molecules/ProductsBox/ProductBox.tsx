@@ -8,12 +8,17 @@ export type ProductBoxProps = {
 	product: ProductType;
 };
 
-export const ProductBox = ({ product, className }: ProductBoxProps & { className?: string }) => (
+export const ProductBox = ({
+	product,
+	className,
+	...props
+}: ProductBoxProps & { className?: string }) => (
 	<div
 		className={cx(
 			'flex flex-col overflow-hidden rounded-xl bg-white text-black dark:bg-gray-900 dark:text-white',
 			className,
 		)}
+		{...props}
 	>
 		{product.image && (
 			<img

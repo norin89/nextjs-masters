@@ -4,6 +4,7 @@ export default function Home() {
 	return (
 		<main className="mx-auto flex min-h-screen max-w-screen-2xl flex-col items-center justify-center p-8 md:p-12 lg:p-16 xl:p-24">
 			<ProductsList
+				data-testid="products-list"
 				title="Our products:"
 				products={[
 					{

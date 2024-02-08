@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ProductBox, type ProductBoxProps } from './ProductBox';
 
 const meta: Meta<typeof ProductBox> = {
-	title: 'Atoms / ProductBox',
+	title: 'Molecules / ProductsBox',
 	component: ProductBox,
 	decorators: [
 		(Story) => (
@@ -12,25 +12,26 @@ const meta: Meta<typeof ProductBox> = {
 			</div>
 		),
 	],
+	excludeStories: /defaultArgs/,
 };
 
 export default meta;
 type Story = StoryObj<typeof ProductBox>;
 
-const defaultArgs: ProductBoxProps = {
+export const defaultArgs: ProductBoxProps = {
 	product: {
 		id: '1',
-		name: 'Product name',
+		name: 'Product',
 		category: 'category',
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 		price: {
-			value: 9900,
+			value: 5499,
 			currency: 'USD',
 		},
 		image: {
-			src: 'https://picsum.photos/seed/1/300/300',
-			alt: 'Product image',
+			src: 'https://prd.place/400?padding=40&id=1',
+			alt: '',
 		},
 	},
 };

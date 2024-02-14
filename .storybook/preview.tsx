@@ -21,6 +21,9 @@ const preview: Preview = {
 				order: ['Atoms', 'Molecules', 'Organisms'],
 			},
 		},
+		nextjs: {
+			appDirectory: true,
+		},
 	},
 	decorators: [
 		(Story) => (

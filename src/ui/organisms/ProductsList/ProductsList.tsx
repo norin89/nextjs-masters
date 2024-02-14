@@ -17,7 +17,7 @@ export const ProductsList = ({
 }: ProductsListProps & { className?: string }) => (
 	<div {...props}>
 		{title && (
-			<Title level={1} className="mb-8 text-center">
+			<Title level={1} size={2} className="mb-8 text-center">
 				{title}
 			</Title>
 		)}

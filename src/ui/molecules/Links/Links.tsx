@@ -8,16 +8,24 @@ import { type LinkType } from '@/types/link.type';
 
 export type LinksProps = {
 	links: LinkType<string>[];
+	/** If `true` only **exact** links will be marked as active */
+	isExact?: boolean;
 };
 
-export const Links = ({ links, className, ...props }: LinksProps & { className?: string }) => {
+export const Links = ({
+	links,
+	isExact = false,
+	className,
+	...props
+}: LinksProps & { className?: string }) => {
 	const pathname = usePathname();
-	const firstNodePathname = `/${pathname.substring(1).split('/').shift()}`;
 
 	return (
 		<ul className={cx('flex gap-3', className)} {...props}>
 			{links.map((link) => {
-				const isActive = firstNodePathname === link.href;
+				const isActive = isExact
+					? link.href === pathname
+					: `${pathname}/`.startsWith(`${link.href as string}/`);
 
 				return (
 					<li key={link.href.toString()}>

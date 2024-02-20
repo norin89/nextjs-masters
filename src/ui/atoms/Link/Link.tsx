@@ -1,5 +1,6 @@
 'use client';
 
+import { type Route } from 'next';
 import NextLink from 'next/link';
 import cx from 'classnames';
 
@@ -14,7 +15,7 @@ export const Link = <T extends string>({
 	className,
 	...props
 }: LinkProps<T> & { className?: string }) => {
-	const { isActive, text, ...rest } = link;
+	const { isActive, text, href, ...rest } = link;
 
 	return (
 		<NextLink
@@ -28,6 +29,7 @@ export const Link = <T extends string>({
 			)}
 			// TODO: move outside
 			aria-current={isActive ? 'page' : undefined}
+			href={href as Route}
 			{...props}
 			{...rest}
 		>

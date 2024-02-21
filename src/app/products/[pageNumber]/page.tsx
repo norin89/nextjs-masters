@@ -1,4 +1,5 @@
 import type { Metadata, Route } from 'next';
+import { notFound } from 'next/navigation';
 
 import type { ProductType } from '@/types';
 import { ProductsList } from '@/ui/organisms';
@@ -16,18 +17,33 @@ const getProducts = async () => {
 	return (await res.json()) as ProductType[];
 };
 
+const countPages = (length: number) => Math.ceil(length / PRODUCTS_PER_PAGE);
+
+export async function generateStaticParams() {
+	const products = await getProducts();
+	const pagesCount = countPages(products.length);
+
+	return Array.from(Array(pagesCount)).map((_, idx) => ({
+		pageNumber: `${idx + 1}`,
+	}));
+}
+
 export default async function ProductsPaginatedPage({
 	params,
 }: {
 	params: { pageNumber: string };
 }) {
 	const products = await getProducts();
-	const pagesCount = Math.ceil(products.length / PRODUCTS_PER_PAGE);
+	const pagesCount = countPages(products.length);
 	const currentPage = parseInt(params.pageNumber, 10);
 	const productsOnPage = products.slice(
 		(currentPage - 1) * PRODUCTS_PER_PAGE,
 		currentPage * PRODUCTS_PER_PAGE,
 	);
+
+	if (!productsOnPage.length) {
+		return notFound();
+	}
 
 	return (
 		<>

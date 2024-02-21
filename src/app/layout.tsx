@@ -7,7 +7,10 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Next.js Masters',
+	title: {
+		default: 'Next.js Masters',
+		template: '%s | Next.js Masters',
+	},
 };
 
 export default function RootLayout({

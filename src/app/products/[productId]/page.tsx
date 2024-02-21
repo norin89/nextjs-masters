@@ -1,9 +1,25 @@
+import { type Metadata } from 'next';
+
 import { Title } from '@/ui/atoms';
 import type { ProductType } from '@/types';
 
+export async function generateMetadata({
+	params,
+}: {
+	params: { productId: string };
+}): Promise<Metadata> {
+	const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${params.productId}`);
+
+	const product = (await res.json()) as ProductType;
+
+	return {
+		title: product.title,
+		description: product.description,
+	};
+}
+
 export default async function ProductPage({ params }: { params: { productId: string } }) {
-	const { productId } = params;
-	const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${productId}`);
+	const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${params.productId}`);
 
 	const product = (await res.json()) as ProductType;
 

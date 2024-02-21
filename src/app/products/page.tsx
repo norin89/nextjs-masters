@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
+
 import type { ProductType } from '@/types';
 import { ProductsList } from '@/ui/organisms';
 import { Title } from '@/ui/atoms';
+
+export const metadata: Metadata = {
+	title: `All Products`,
+};
 
 export default async function ProductsPage() {
 	const res = await fetch('https://naszsklep-api.vercel.app/api/products?take=20');

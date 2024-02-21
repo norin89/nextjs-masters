@@ -17,47 +17,29 @@ const defaultArgs: ProductsListProps = {
 		productDefaultArgs.product,
 		{
 			id: '2',
-			name: 'Second product',
+			title: 'Second product',
 			category: 'category',
 			description:
 				'Dolores nisi rem voluptas. Ad architecto atque deserunt dolor, ea explicabo facilis fuga fugit iusto labore maxime modi mollitia necessitatibus obcaecati odit officia optio pariatur porro qui quibusdam ratione repudiandae vel vero!',
-			price: {
-				value: 81900,
-				currency: 'USD',
-			},
-			image: {
-				src: 'https://prd.place/400?padding=40&id=2',
-				alt: '',
-			},
+			price: 81900,
+			image: 'https://prd.place/400?id=2',
 		},
 		{
 			id: '3',
-			name: 'Another product with rather pretty long name',
+			title: 'Another product with rather pretty long name',
 			category: 'other category',
 			description:
 				'Atque, consectetur, doloremque, dolorum eum exercitationem fuga fugiat illum labore libero minima mollitia officia quam quos ut voluptates.',
-			price: {
-				value: 167500,
-				currency: 'USD',
-			},
-			image: {
-				src: 'https://prd.place/400?padding=40&id=3',
-				alt: '',
-			},
+			price: 167500,
+			image: 'https://prd.place/400?id=3',
 		},
 		{
 			id: '4',
-			name: 'The last one',
+			title: 'The last one',
 			category: 'category',
 			description: 'Commodi culpa deleniti eaque expedita.',
-			price: {
-				value: 99,
-				currency: 'USD',
-			},
-			image: {
-				src: 'https://prd.place/400?padding=40&id=4',
-				alt: '',
-			},
+			price: 99,
+			image: 'https://prd.place/400?id=4',
 		},
 	],
 };

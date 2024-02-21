@@ -1,12 +1,11 @@
 import cx from 'classnames';
 
-import { type ProductType } from '@/types/product.type';
-import { ProductBox } from '@/ui/molecules';
+import { ProductBox, type ProductBoxProps } from '@/ui/molecules';
 import { Title } from '@/ui/atoms';
 
 export type ProductsListProps = {
 	title?: string;
-	products: ProductType[];
+	products: ProductBoxProps['product'][];
 };
 
 export const ProductsList = ({
@@ -17,7 +16,7 @@ export const ProductsList = ({
 }: ProductsListProps & { className?: string }) => (
 	<div {...props}>
 		{title && (
-			<Title level={1} size={2} className="mb-8 text-center">
+			<Title level={2} className="mb-8 text-center">
 				{title}
 			</Title>
 		)}

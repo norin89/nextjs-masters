@@ -6,7 +6,7 @@ import { type ProductType } from '@/types/product.type';
 import { Title } from '@/ui/atoms';
 
 export type ProductBoxProps = {
-	product: ProductType;
+	product: Pick<ProductType, 'id' | 'title' | 'category' | 'description' | 'price' | 'image'>;
 };
 
 export const ProductBox = ({
@@ -14,23 +14,23 @@ export const ProductBox = ({
 	className,
 	...props
 }: ProductBoxProps & { className?: string }) => {
-	const { name, category, description, price, image } = product;
+	const { title, category, description, price, image } = product;
 
 	return (
 		<NextLink
 			className={cx(
-				'group flex flex-col overflow-hidden rounded-xl bg-white text-black shadow-sm transition-shadow duration-500 hover:shadow-xl dark:bg-gray-900 dark:text-white',
+				'group flex flex-col overflow-hidden rounded-xl bg-gray-50 text-black shadow-sm transition-shadow duration-500 hover:shadow-xl dark:bg-gray-900 dark:text-white',
 				className,
 			)}
 			href={`/products/${product.id}`}
 			{...props}
 		>
 			{image && (
-				<div className="overflow-hidden">
+				<div className="overflow-hidden border-b bg-white p-10 text-gray-600">
 					<img
-						className="aspect-square w-full bg-gray-200 text-gray-600 transition-all duration-500 group-hover:scale-110 group-hover:bg-white dark:bg-gray-800 dark:text-gray-300 dark:group-hover:bg-gray-900"
-						src={image.src}
-						alt={image.alt || name}
+						className="aspect-square w-full transition-transform duration-500 group-hover:scale-110"
+						src={image}
+						alt={title}
 					/>
 				</div>
 			)}
@@ -39,7 +39,7 @@ export const ProductBox = ({
 					{category}
 				</span>
 				<Title level={2} size={5} className="mt-2 text-lg">
-					{name}
+					{title}
 				</Title>
 				{description && (
 					<p className="mt-2 text-xs leading-normal text-gray-600 dark:text-gray-300">

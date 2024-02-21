@@ -7,7 +7,7 @@ export default function ProductPage({ params }: { params: { productId: string } 
 		<div className="align-center flex flex-wrap items-center justify-center">
 			<div className="md:w-1/2 xl:w-1/3">
 				<img
-					src="https://prd.place/400?padding=40&id=45"
+					src="https://prd.place/400?id=45"
 					alt="Energy Saving Light Bulbs"
 					className="w-full max-w-screen-sm"
 				/>

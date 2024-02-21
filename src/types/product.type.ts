@@ -1,15 +1,13 @@
 export type ProductType = {
 	id: string;
-	name: string;
-	/** TODO: Predefine categories */
+	title: string;
+	price: number;
+	description: string;
+	longDescription: string;
+	image: string;
 	category: string;
-	description?: string;
-	price: {
-		value: number;
-		currency: string;
-	};
-	image?: {
-		src: string;
-		alt?: string;
+	rating?: {
+		rate: number;
+		count: number;
 	};
 };

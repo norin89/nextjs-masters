@@ -21,33 +21,17 @@ type Story = StoryObj<typeof ProductBox>;
 export const defaultArgs: ProductBoxProps = {
 	product: {
 		id: '1',
-		name: 'Product',
+		title: 'Product',
 		category: 'category',
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		price: {
-			value: 5499,
-			currency: 'USD',
-		},
-		image: {
-			src: 'https://prd.place/400?padding=40&id=1',
-			alt: '',
-		},
+		price: 5499,
+		image: 'https://prd.place/400?id=1',
 	},
 };
 
 export const Default: Story = {
 	args: {
 		...defaultArgs,
-	},
-};
-
-export const NoImage: Story = {
-	args: {
-		...defaultArgs,
-		product: {
-			...defaultArgs.product,
-			image: undefined,
-		},
 	},
 };

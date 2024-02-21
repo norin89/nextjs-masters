@@ -22,7 +22,7 @@ export const ProductBox = ({
 				'group flex flex-col overflow-hidden rounded-xl bg-gray-50 text-black shadow-sm transition-shadow duration-500 hover:shadow-xl dark:bg-gray-900 dark:text-white',
 				className,
 			)}
-			href={`/products/${product.id}`}
+			href={`/product/${product.id}`}
 			{...props}
 		>
 			{image && (

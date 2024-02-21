@@ -18,14 +18,16 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<main className="mx-auto flex min-h-screen max-w-screen-2xl flex-col justify-center px-4 py-12 md:p-12 lg:p-16 xl:p-24">
-					<NavBar
-						links={[
-							{ text: 'Home', href: '/' },
-							{ text: 'All', href: '/products' },
-						]}
-					/>
-					{children}
+				<NavBar
+					links={[
+						{ text: 'Home', href: '/' },
+						{ text: 'All', href: '/products' },
+					]}
+				/>
+				<main>
+					<div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col justify-center p-8 md:p-12 lg:p-16 xl:p-24">
+						{children}
+					</div>
 				</main>
 			</body>
 		</html>

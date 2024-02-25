@@ -6,7 +6,7 @@ import { type ProductType } from '@/types/product.type';
 import { Title } from '@/ui/atoms';
 
 export type ProductBoxProps = {
-	product: Pick<ProductType, 'id' | 'title' | 'category' | 'description' | 'price' | 'image'>;
+	product: Pick<ProductType, 'id' | 'name' | 'category' | 'description' | 'price' | 'image'>;
 };
 
 export const ProductBox = ({
@@ -14,7 +14,7 @@ export const ProductBox = ({
 	className,
 	...props
 }: ProductBoxProps & { className?: string }) => {
-	const { title, category, description, price, image } = product;
+	const { name, category, description, price, image } = product;
 
 	return (
 		<NextLink
@@ -30,7 +30,7 @@ export const ProductBox = ({
 					<img
 						className="aspect-square w-full transition-transform duration-500 group-hover:scale-110"
 						src={image}
-						alt={title}
+						alt={name}
 					/>
 				</div>
 			)}
@@ -39,7 +39,7 @@ export const ProductBox = ({
 					{category}
 				</span>
 				<Title level={2} size={5} className="mt-2 text-lg">
-					{title}
+					{name}
 				</Title>
 				{description && (
 					<p className="mt-2 text-xs leading-normal text-gray-600 dark:text-gray-300">

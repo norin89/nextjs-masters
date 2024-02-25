@@ -17,7 +17,7 @@ const defaultArgs: ProductsListProps = {
 		productDefaultArgs.product,
 		{
 			id: '2',
-			title: 'Second product',
+			name: 'Second product',
 			category: 'category',
 			description:
 				'Dolores nisi rem voluptas. Ad architecto atque deserunt dolor, ea explicabo facilis fuga fugit iusto labore maxime modi mollitia necessitatibus obcaecati odit officia optio pariatur porro qui quibusdam ratione repudiandae vel vero!',
@@ -26,7 +26,7 @@ const defaultArgs: ProductsListProps = {
 		},
 		{
 			id: '3',
-			title: 'Another product with rather pretty long name',
+			name: 'Another product with rather pretty long name',
 			category: 'other category',
 			description:
 				'Atque, consectetur, doloremque, dolorum eum exercitationem fuga fugiat illum labore libero minima mollitia officia quam quos ut voluptates.',
@@ -35,7 +35,7 @@ const defaultArgs: ProductsListProps = {
 		},
 		{
 			id: '4',
-			title: 'The last one',
+			name: 'The last one',
 			category: 'category',
 			description: 'Commodi culpa deleniti eaque expedita.',
 			price: 99,

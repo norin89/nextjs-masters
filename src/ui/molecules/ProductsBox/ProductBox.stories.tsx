@@ -21,7 +21,7 @@ type Story = StoryObj<typeof ProductBox>;
 export const defaultArgs: ProductBoxProps = {
 	product: {
 		id: '1',
-		title: 'Product',
+		name: 'Product',
 		category: 'category',
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',

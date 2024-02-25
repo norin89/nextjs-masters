@@ -3,19 +3,26 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "concurrently \"next dev\" \"pnpm codegen --watch\"",
 		"build": "next build && pnpm run storybook:build",
 		"start": "next start",
 		"lint": "next lint --dir src",
 		"storybook": "storybook dev -p 6006",
-		"storybook:build": "storybook build -o ./public/storybook"
+		"storybook:build": "storybook build -o ./public/storybook",
+		"codegen": "graphql-codegen --config .graphqlrc.ts"
 	},
 	"dependencies": {
+		"@graphql-typed-document-node/core": "^3.2.0",
+		"@next/env": "^14.1.0",
+		"graphql": "^16.8.1",
 		"next": "14.1.0",
 		"react": "^18",
 		"react-dom": "^18"
 	},
 	"devDependencies": {
+		"@graphql-codegen/cli": "5.0.2",
+		"@graphql-codegen/client-preset": "4.2.4",
+		"@parcel/watcher": "^2.4.1",
 		"@storybook/addon-essentials": "^7.6.13",
 		"@storybook/addon-interactions": "^7.6.13",
 		"@storybook/addon-links": "^7.6.13",
@@ -30,6 +37,7 @@
 		"@typescript-eslint/parser": "^6.21.0",
 		"autoprefixer": "^10.0.1",
 		"classnames": "^2.5.1",
+		"concurrently": "^8.2.2",
 		"eslint": "^8.56.0",
 		"eslint-config-next": "14.1.0",
 		"eslint-config-prettier": "^9.1.0",
@@ -40,6 +48,7 @@
 		"prettier-plugin-tailwindcss": "^0.5.11",
 		"storybook": "^7.6.13",
 		"tailwindcss": "^3.3.0",
+		"ts-node": "^10.9.2",
 		"typescript": "^5.3.3"
 	}
 }

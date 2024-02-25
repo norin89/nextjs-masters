@@ -1,7 +1,7 @@
 import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 
-import type { ProductType } from '@/types';
+import { getProducts } from '@/api/products';
 import { ProductsList } from '@/ui/organisms';
 import { Title } from '@/ui/atoms';
 import { Links } from '@/ui/molecules/Links/Links';
@@ -10,11 +10,6 @@ const PRODUCTS_PER_PAGE = 4;
 
 export const metadata: Metadata = {
 	title: `All Products`,
-};
-
-const getProducts = async () => {
-	const res = await fetch('https://naszsklep-api.vercel.app/api/products');
-	return (await res.json()) as ProductType[];
 };
 
 const countPages = (length: number) => Math.ceil(length / PRODUCTS_PER_PAGE);

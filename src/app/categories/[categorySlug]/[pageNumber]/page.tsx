@@ -27,23 +27,27 @@ const countPages = (length: number) => Math.ceil(length / PRODUCTS_PER_PAGE);
 
 export async function generateStaticParams() {
 	const categories = await getCategories();
+	const params: { categorySlug: string; pageNumber: string }[] = [];
 
-	return categories.map(async (category) => {
+	for (const category of categories) {
 		const products = await getProductsByCategorySlug(category.slug);
-
 		const pagesCount = countPages(products.length);
 
-		return Array.from(Array(pagesCount)).map((_, idx) => ({
-			categorySlug: category.slug,
-			pageNumber: `${idx + 1}`,
-		}));
-	});
+		Array.from(Array(pagesCount)).forEach((_, idx) => {
+			params.push({
+				categorySlug: category.slug,
+				pageNumber: `${idx + 1}`,
+			});
+		});
+	}
+
+	return params;
 }
 
 export default async function CategoryPage({
 	params,
 }: {
-	params: { pageNumber: string; categorySlug: string };
+	params: { categorySlug: string; pageNumber: string };
 }) {
 	const category = await getCategoryBySlug(params.categorySlug);
 	const products = await getProductsByCategorySlug(params.categorySlug);

@@ -1,6 +1,5 @@
 query ProductsGetByCategorySlug($slug: String!) {
     category(slug: $slug) {
-        ...Category
         products {
             ...Product
         }

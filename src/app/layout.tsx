@@ -1,7 +1,7 @@
 import type { Metadata, Route } from 'next';
 import { Inter } from 'next/font/google';
 
-import { getCategories } from '@/api/products';
+import { getCategories, getCollections } from '@/api/products';
 import { NavBar } from '@/ui/organisms';
 import './globals.css';
 
@@ -20,6 +20,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const categories = await getCategories();
+	const collections = await getCollections();
 
 	return (
 		<html lang="en">
@@ -31,6 +32,10 @@ export default async function RootLayout({
 						...categories.map((category) => ({
 							text: category.name,
 							href: `/categories/${category.slug}` as Route,
+						})),
+						...collections.map((collection) => ({
+							text: collection.name,
+							href: `/collections/${collection.slug}` as Route,
 						})),
 					]}
 				/>

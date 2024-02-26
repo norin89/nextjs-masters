@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
+import type { Metadata, Route } from 'next';
 import { Inter } from 'next/font/google';
 
+import { getCategories } from '@/api/products';
 import { NavBar } from '@/ui/organisms';
 import './globals.css';
 
@@ -13,11 +14,13 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const categories = await getCategories();
+
 	return (
 		<html lang="en">
 			<body className={inter.className}>
@@ -25,6 +28,10 @@ export default function RootLayout({
 					links={[
 						{ text: 'Home', href: '/' },
 						{ text: 'All', href: '/products' },
+						...categories.map((category) => ({
+							text: category.name,
+							href: `/categories/${category.slug}` as Route,
+						})),
 					]}
 				/>
 				<main>

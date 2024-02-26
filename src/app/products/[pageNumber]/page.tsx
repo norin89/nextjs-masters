@@ -1,7 +1,7 @@
 import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 
-import { getProductsList } from '@/api/products';
+import { getProducts } from '@/api/products';
 import { ProductsList } from '@/ui/organisms';
 import { Title } from '@/ui/atoms';
 import { Links } from '@/ui/molecules/Links/Links';
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const countPages = (length: number) => Math.ceil(length / PRODUCTS_PER_PAGE);
 
 export async function generateStaticParams() {
-	const products = await getProductsList();
+	const products = await getProducts();
 	const pagesCount = countPages(products.length);
 
 	return Array.from(Array(pagesCount)).map((_, idx) => ({
@@ -28,7 +28,7 @@ export default async function ProductsPaginatedPage({
 }: {
 	params: { pageNumber: string };
 }) {
-	const products = await getProductsList();
+	const products = await getProducts();
 	const pagesCount = countPages(products.length);
 	const currentPage = parseInt(params.pageNumber, 10);
 	const productsOnPage = products.slice(
@@ -43,7 +43,7 @@ export default async function ProductsPaginatedPage({
 	return (
 		<>
 			<Title level={1} className="mb-8 text-center md:mb-12 lg:mb-16 xl:mb-24">
-				Check out our amazing products!
+				All products
 			</Title>
 			<ProductsList data-testid="products-list" products={productsOnPage} />
 			<nav className="mt-8 flex justify-center" aria-label="pagination">

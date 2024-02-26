@@ -1,7 +1,0 @@
-query ProductsGetList {
-    products(take: 10) {
-        data {
-            ...Product
-        }
-    }
-}

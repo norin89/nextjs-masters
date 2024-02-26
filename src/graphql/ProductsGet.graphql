@@ -1,0 +1,8 @@
+query ProductsGet {
+    # only 20 due to the API limit
+    products(take: 20) {
+        data {
+            ...Product
+        }
+    }
+}

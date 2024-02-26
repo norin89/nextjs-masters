@@ -22,11 +22,15 @@ export const defaultArgs: ProductBoxProps = {
 	product: {
 		id: '1',
 		name: 'Product',
-		category: 'category',
+		categories: [{ name: 'category' }],
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 		price: 5499,
-		image: 'https://prd.place/400?id=1',
+		images: [
+			{
+				url: 'https://prd.place/400?id=1',
+			},
+		],
 	},
 };
 

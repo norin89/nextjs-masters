@@ -27,8 +27,6 @@ export const Link = <T extends string>({
 				},
 				className,
 			)}
-			// TODO: move outside
-			aria-current={isActive ? 'page' : undefined}
 			href={href as Route}
 			{...props}
 			{...rest}

@@ -1,1 +1,1 @@
-export * from './product.type';
+export * from './link.type';

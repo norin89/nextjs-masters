@@ -1,12 +1,12 @@
 import NextLink from 'next/link';
 import cx from 'classnames';
 
+import { type ProductFragment } from '@/gql/graphql';
 import { formatPrice } from '@/utils/formatPrice';
-import { type ProductType } from '@/types/product.type';
 import { Title } from '@/ui/atoms';
 
 export type ProductBoxProps = {
-	product: Pick<ProductType, 'id' | 'name' | 'category' | 'description' | 'price' | 'image'>;
+	product: ProductFragment;
 };
 
 export const ProductBox = ({
@@ -14,7 +14,7 @@ export const ProductBox = ({
 	className,
 	...props
 }: ProductBoxProps & { className?: string }) => {
-	const { name, category, description, price, image } = product;
+	const { name, categories, description, price, images } = product;
 
 	return (
 		<NextLink
@@ -25,19 +25,21 @@ export const ProductBox = ({
 			href={`/product/${product.id}`}
 			{...props}
 		>
-			{image && (
+			{images[0] && (
 				<div className="overflow-hidden border-b bg-white p-10 text-gray-600">
 					<img
 						className="aspect-square w-full transition-transform duration-500 group-hover:scale-110"
-						src={image}
+						src={images[0].url}
 						alt={name}
 					/>
 				</div>
 			)}
 			<div className="flex grow flex-col items-start p-4">
-				<span className="bg-gray-200 px-2 py-1 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-200">
-					{category}
-				</span>
+				{categories[0] && (
+					<span className="bg-gray-200 px-2 py-1 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+						{categories[0]?.name}
+					</span>
+				)}
 				<Title level={2} size={5} className="mt-2 text-lg">
 					{name}
 				</Title>

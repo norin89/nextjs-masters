@@ -31,7 +31,13 @@ export default async function ProductPage({ params }: { params: { productId: str
 		<div className="align-center flex flex-wrap items-center justify-center">
 			<div className="md:w-1/2 xl:w-1/3">
 				<div className="mb-8 bg-white p-10 text-gray-600 md:mb-0">
-					<img src={product.image} alt={product.name} className="w-full max-w-screen-sm" />
+					{product.images[0] && (
+						<img
+							src={product.images[0].url}
+							alt={product.name}
+							className="w-full max-w-screen-sm"
+						/>
+					)}
 				</div>
 			</div>
 			<div className="md:w-1/2 md:p-8 xl:w-2/3">
@@ -40,7 +46,9 @@ export default async function ProductPage({ params }: { params: { productId: str
 						{formatPrice(product.price)}
 					</strong>
 					<Title level={1}>{product.name}</Title>
-					<strong className="text-xs uppercase opacity-50">{product.category}</strong>
+					{product.categories[0] && (
+						<strong className="text-xs uppercase opacity-50">{product.categories[0].name}</strong>
+					)}
 				</header>
 				<p className="my-4">{product.description}</p>
 			</div>

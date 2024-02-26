@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { Title } from '@/ui/atoms';
+import { Badge, Title } from '@/ui/atoms';
 import { formatPrice } from '@/utils/formatPrice';
 import { getProductById } from '@/api/products';
 
@@ -42,13 +42,13 @@ export default async function ProductPage({ params }: { params: { productId: str
 			</div>
 			<div className="md:w-1/2 md:p-8 xl:w-2/3">
 				<header className="mb-8">
-					<strong className="mb-2 block self-end text-6xl font-medium text-pink-500">
+					{product.categories[0] && <Badge>{product.categories[0]?.name}</Badge>}
+					<Title level={1} className="my-2">
+						{product.name}
+					</Title>
+					<strong className="mb-2 block self-end text-4xl font-medium text-pink-500">
 						{formatPrice(product.price)}
 					</strong>
-					<Title level={1}>{product.name}</Title>
-					{product.categories[0] && (
-						<strong className="text-xs uppercase opacity-50">{product.categories[0].name}</strong>
-					)}
 				</header>
 				<p className="my-4">{product.description}</p>
 			</div>

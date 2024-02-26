@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import { type ProductFragment } from '@/gql/graphql';
 import { formatPrice } from '@/utils/formatPrice';
-import { Title } from '@/ui/atoms';
+import { Title, Badge } from '@/ui/atoms';
 
 export type ProductBoxProps = {
 	product: ProductFragment;
@@ -35,11 +35,7 @@ export const ProductBox = ({
 				</div>
 			)}
 			<div className="flex grow flex-col items-start p-4">
-				{categories[0] && (
-					<span className="bg-gray-200 px-2 py-1 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-200">
-						{categories[0]?.name}
-					</span>
-				)}
+				{categories[0] && <Badge>{categories[0]?.name}</Badge>}
 				<Title level={2} size={5} className="mt-2 text-lg">
 					{name}
 				</Title>

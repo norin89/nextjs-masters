@@ -28,7 +28,7 @@ export const defaultArgs: ProductBoxProps = {
 		price: 5499,
 		images: [
 			{
-				url: 'https://prd.place/400?id=1',
+				url: 'https://prd.place/400?padding=20&id=1',
 			},
 		],
 	},

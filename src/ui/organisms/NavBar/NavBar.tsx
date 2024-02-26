@@ -4,23 +4,32 @@ import { type LinkType } from '@/types/link.type';
 import { Links } from '@/ui/molecules/Links/Links';
 
 export type NavBarProps<T extends string> = {
-	links: LinkType<T>[];
+	menu: LinkType<T>[];
+	submenu?: LinkType<T>[];
 };
 
 export const NavBar = <T extends string>({
-	links,
+	menu,
+	submenu,
 	className,
 	...props
 }: NavBarProps<T> & { className?: string }) => (
 	<nav
 		className={cx(
-			'sticky left-0 top-0 z-10 w-full items-center overflow-x-auto bg-white py-2 shadow-md shadow-black/5 lg:flex-wrap lg:justify-start lg:py-4 dark:bg-neutral-900 dark:shadow-black/10',
+			'sticky left-0 top-0 z-10 w-full shadow-md shadow-black/5 backdrop-blur-md',
 			className,
 		)}
 		{...props}
 	>
-		<div className="flex w-full items-center justify-center px-3">
-			<Links links={links} />
-		</div>
+		<Links
+			links={menu}
+			className="flex w-full flex-wrap items-center justify-center border-b border-gray-200/90 bg-gray-100/90 py-2 lg:py-4 dark:border-gray-950/90 dark:bg-neutral-800/90"
+		/>
+		{submenu && submenu?.length > 0 && (
+			<Links
+				links={submenu}
+				className="flex w-full flex-wrap items-center justify-center border-b border-gray-200/90 bg-gray-50/90 py-2 lg:py-4 dark:border-gray-950/90 dark:bg-neutral-900/90"
+			/>
+		)}
 	</nav>
 );

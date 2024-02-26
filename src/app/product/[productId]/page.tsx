@@ -30,7 +30,7 @@ export default async function ProductPage({ params }: { params: { productId: str
 	return (
 		<div className="align-center flex flex-wrap items-center justify-center">
 			<div className="md:w-1/2 xl:w-1/3">
-				<div className="mb-8 bg-white p-10 text-gray-600 md:mb-0">
+				<div className="mb-8 bg-white p-4 text-gray-600 md:mb-0">
 					{product.images[0] && (
 						<img
 							src={product.images[0].url}

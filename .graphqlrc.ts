@@ -4,7 +4,7 @@ nextEnv.loadEnvConfig(process.cwd());
 
 const config = {
 	overwrite: true,
-	schema: process.env.GRAPHQL_URL,
+	schema: process.env.NEXT_PUBLIC_GRAPHQL_URL,
 	ignoreNoDocuments: true,
 	documents: 'src/graphql/*.graphql',
 	generates: {

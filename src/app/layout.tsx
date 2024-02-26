@@ -1,8 +1,8 @@
-import type { Metadata, Route } from 'next';
+import React, { Suspense } from 'react';
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { getCategories, getCollections } from '@/api/products';
-import { NavBar } from '@/ui/organisms';
+import { Navigation } from '@/app/_navigation';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -19,26 +19,12 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const categories = await getCategories();
-	const collections = await getCollections();
-
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<NavBar
-					links={[
-						{ text: 'Home', href: '/' },
-						{ text: 'All', href: '/products' },
-						...categories.map((category) => ({
-							text: category.name,
-							href: `/categories/${category.slug}` as Route,
-						})),
-						...collections.map((collection) => ({
-							text: collection.name,
-							href: `/collections/${collection.slug}` as Route,
-						})),
-					]}
-				/>
+				<Suspense fallback={<span aria-busy="true" />}>
+					<Navigation />
+				</Suspense>
 				<main>
 					<div className="mx-auto flex min-h-screen max-w-screen-2xl flex-col justify-center p-8 md:p-12 lg:p-16 xl:p-24">
 						{children}

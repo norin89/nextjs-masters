@@ -13,6 +13,16 @@ type Story = StoryObj<typeof NavBar>;
 
 export const Default: Story = {
 	args: {
-		links: LinksDefaultArgs.links,
+		menu: LinksDefaultArgs.links,
+		submenu: [
+			{
+				text: 'Submenu Link',
+				href: '#submenu',
+			},
+			{
+				text: 'Other one',
+				href: '#other-one',
+			},
+		],
 	},
 };

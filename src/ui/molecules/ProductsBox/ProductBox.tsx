@@ -19,14 +19,14 @@ export const ProductBox = ({
 	return (
 		<NextLink
 			className={cx(
-				'group flex flex-col overflow-hidden rounded-xl bg-gray-50 text-black shadow-sm transition-shadow duration-500 hover:shadow-xl dark:bg-gray-900 dark:text-white',
+				'group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-gray-50 text-black shadow-sm transition-shadow duration-500 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900 dark:text-white',
 				className,
 			)}
 			href={`/product/${product.id}`}
 			{...props}
 		>
 			{images[0] && (
-				<div className="overflow-hidden border-b bg-white p-10 text-gray-600">
+				<div className="overflow-hidden border-b border-gray-200 bg-white p-4 text-gray-600 dark:border-gray-800">
 					<img
 						className="aspect-square w-full transition-transform duration-500 group-hover:scale-110"
 						src={images[0].url}

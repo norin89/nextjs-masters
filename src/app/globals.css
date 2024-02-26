@@ -4,28 +4,20 @@
 
 :root {
 	min-height: 100vh;
-	--foreground-rgb: 30, 41, 59;
-	--background-start-rgb: 244, 244, 244;
-	--background-end-rgb: 229, 229, 229;
+	--foreground-color: 30, 41, 59;
+	--background-color: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 12, 12, 12;
-		--background-end-rgb: 18, 18, 18;
+		--foreground-color: 255, 255, 255;
+		--background-color: 18, 18, 18;
 	}
 }
 
 body {
-	background: rgb(var(--background-end-rgb));
-	color: rgb(var(--foreground-rgb));
-}
-
-main {
-	color: rgb(var(--foreground-rgb));
-	background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-		rgb(var(--background-start-rgb));
+	background: rgb(var(--background-color));
+	color: rgb(var(--foreground-color));
 }
 
 @layer utilities {

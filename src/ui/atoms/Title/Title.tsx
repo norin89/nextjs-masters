@@ -1,9 +1,9 @@
-import { type ElementType } from 'react';
+import type { ElementType, ReactNode } from 'react';
 import cx from 'classnames';
 
 export interface TitleProps {
 	/** Title text */
-	children: string;
+	children: ReactNode;
 	/** Used to render correct Hx element */
 	level: 1 | 2 | 3 | 4 | 5;
 	/** Overrides `level` visually */

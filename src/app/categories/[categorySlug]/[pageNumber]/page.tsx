@@ -18,7 +18,7 @@ export async function generateMetadata({
 	if (!category) return {};
 
 	return {
-		title: category.name,
+		title: `${category.name} | Categories`,
 		description: category.description,
 	};
 }
@@ -66,7 +66,10 @@ export default async function CategoryPage({
 	return (
 		<>
 			<header className="mb-8 text-center md:mb-12 lg:mb-16 xl:mb-24">
-				<Title level={1}>{category.name}</Title>
+				<Title level={1}>
+					<span className="opacity-25">Categories / </span>
+					{category.name}
+				</Title>
 				{category.description && <p className="mt-4">{category.description}</p>}
 			</header>
 			<ProductsList data-testid="products-list" products={productsOnPage} />

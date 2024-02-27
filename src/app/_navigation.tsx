@@ -13,8 +13,8 @@ export async function Navigation(props: {}) {
 			menu={[
 				{ text: 'Home', href: '/' },
 				{ text: 'All', href: '/products' },
-				{ text: 'Categories', href: '/categories' },
 				{ text: 'Collections', href: '/collections' },
+				{ text: 'Categories', href: '/categories' },
 			]}
 			submenu={[
 				...(`${pathname}/`.startsWith('/categories/')

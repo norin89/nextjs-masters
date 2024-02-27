@@ -18,7 +18,7 @@ export async function generateMetadata({
 	if (!collection) return {};
 
 	return {
-		title: collection.name,
+		title: `${collection.name} | Collections`,
 		description: collection.description,
 	};
 }
@@ -66,7 +66,10 @@ export default async function CollectionPage({
 	return (
 		<>
 			<header className="mb-8 text-center md:mb-12 lg:mb-16 xl:mb-24">
-				<Title level={1}>{collection.name}</Title>
+				<Title level={1}>
+					<span className="opacity-25">Collections / </span>
+					{collection.name}
+				</Title>
 				{collection.description && <p className="mt-4">{collection.description}</p>}
 			</header>
 			<ProductsList data-testid="products-list" products={productsOnPage} />

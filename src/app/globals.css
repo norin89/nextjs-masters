@@ -5,13 +5,13 @@
 :root {
 	min-height: 100vh;
 	--foreground-color: 30, 41, 59;
-	--background-color: 255, 255, 255;
+	--background-color: 243, 244, 246;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
 		--foreground-color: 255, 255, 255;
-		--background-color: 18, 18, 18;
+		--background-color: 28, 28, 28;
 	}
 }
 

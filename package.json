@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "concurrently \"next dev\" \"pnpm codegen --watch\"",
+		"prebuild": "pnpm codegen",
 		"build": "next build && pnpm run storybook:build",
 		"start": "next start",
 		"lint": "next lint --dir src",

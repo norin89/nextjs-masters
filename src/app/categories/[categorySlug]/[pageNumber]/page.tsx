@@ -2,7 +2,7 @@ import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getCategories, getCategoryBySlug, getProductsByCategorySlug } from '@/api/products';
-import { Header, ProductsList } from '@/ui/organisms';
+import { Header, ProductsList, Section } from '@/ui/organisms';
 import { Links } from '@/ui/molecules/Links/Links';
 
 const PRODUCTS_PER_PAGE = 4;
@@ -63,8 +63,8 @@ export default async function CategoryPage({
 	}
 
 	return (
-		<>
-			<Header suffix="Categories" title={category.name} lead={category.description} />
+		<Section>
+			<Header level={1} suffix="Categories" title={category.name} lead={category.description} />
 			<ProductsList data-testid="products-list" products={productsOnPage} />
 			<nav className="mt-12 flex justify-center" aria-label="pagination">
 				<Links
@@ -75,6 +75,6 @@ export default async function CategoryPage({
 					isExact
 				/>
 			</nav>
-		</>
+		</Section>
 	);
 }

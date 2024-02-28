@@ -10,6 +10,7 @@ import {
 	type CategoryFragment,
 	type CollectionFragment,
 	type ProductFragment,
+	type QueryProductsArgs,
 } from '@/gql/graphql';
 import { executeGraphql } from '@/api/api';
 
@@ -37,8 +38,8 @@ export const getCollectionBySlug = async (
 	return graphqlResponse.collection;
 };
 
-export const getProducts = async (): Promise<ProductFragment[]> => {
-	const graphqlResponse = await executeGraphql(ProductsGetDocument);
+export const getProducts = async (take?: QueryProductsArgs['take']): Promise<ProductFragment[]> => {
+	const graphqlResponse = await executeGraphql(ProductsGetDocument, { take });
 	return graphqlResponse.products.data;
 };
 

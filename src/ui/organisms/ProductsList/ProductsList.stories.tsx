@@ -12,7 +12,6 @@ export default meta;
 type Story = StoryObj<typeof ProductsList>;
 
 const defaultArgs: ProductsListProps = {
-	title: 'List of products:',
 	products: [
 		productDefaultArgs.product,
 		{

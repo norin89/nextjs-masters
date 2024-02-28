@@ -27,7 +27,7 @@ export default async function RootLayout({
 					<Navigation />
 				</Suspense>
 				<main className="flex grow items-center">
-					<div className="mx-auto max-w-screen-2xl p-8 md:p-12 lg:p-16 xl:p-24">{children}</div>
+					<div className="grow">{children}</div>
 				</main>
 			</body>
 		</html>

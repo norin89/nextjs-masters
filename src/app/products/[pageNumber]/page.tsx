@@ -2,7 +2,7 @@ import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getProducts } from '@/api/products';
-import { Header, ProductsList } from '@/ui/organisms';
+import { Header, ProductsList, Section } from '@/ui/organisms';
 import { Links } from '@/ui/molecules/Links/Links';
 
 const PRODUCTS_PER_PAGE = 4;
@@ -40,8 +40,8 @@ export default async function ProductsPaginatedPage({
 	}
 
 	return (
-		<>
-			<Header title="All products" />
+		<Section>
+			<Header level={1} title="All products" />
 			<ProductsList data-testid="products-list" products={productsOnPage} />
 			<nav className="mt-12 flex justify-center" aria-label="pagination">
 				<Links
@@ -52,6 +52,6 @@ export default async function ProductsPaginatedPage({
 					isExact
 				/>
 			</nav>
-		</>
+		</Section>
 	);
 }

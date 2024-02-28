@@ -1,6 +1,6 @@
-query ProductsGet {
-    # only 20 due to the API limit
-    products(take: 20) {
+# only 50 due to the API limit
+query ProductsGet($take: Int = 50) {
+    products(take: $take) {
         data {
             ...Product
         }

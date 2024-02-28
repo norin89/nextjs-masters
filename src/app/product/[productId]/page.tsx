@@ -1,5 +1,6 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import NextImage from 'next/image';
 
 import { Badge, Title } from '@/ui/atoms';
 import { formatPrice } from '@/utils/formatPrice';
@@ -32,10 +33,12 @@ export default async function ProductPage({ params }: { params: { productId: str
 			<div className="md:w-1/2 xl:w-1/3">
 				<div className="mb-8 bg-white p-4 text-gray-600 md:mb-0">
 					{product.images[0] && (
-						<img
+						<NextImage
 							src={product.images[0].url}
 							alt={product.name}
 							className="w-full max-w-screen-sm"
+							width={600}
+							height={600}
 						/>
 					)}
 				</div>

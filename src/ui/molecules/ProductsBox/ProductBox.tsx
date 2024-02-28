@@ -1,4 +1,5 @@
 import NextLink from 'next/link';
+import NextImage from 'next/image';
 import cx from 'classnames';
 
 import { type ProductFragment } from '@/gql/graphql';
@@ -27,10 +28,12 @@ export const ProductBox = ({
 		>
 			{images[0] && (
 				<div className="overflow-hidden border-b border-gray-200 bg-white p-4 text-gray-600 dark:border-gray-800">
-					<img
+					<NextImage
 						className="aspect-square w-full transition-transform duration-500 group-hover:scale-110"
 						src={images[0].url}
 						alt={name}
+						width={400}
+						height={400}
 					/>
 				</div>
 			)}

@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getCollections, getCollectionBySlug, getProductsByCollectionSlug } from '@/api/products';
-import { ProductsList } from '@/ui/organisms';
-import { Title } from '@/ui/atoms';
+import { Header, ProductsList } from '@/ui/organisms';
 
 export async function generateMetadata({
 	params,
@@ -38,13 +37,7 @@ export default async function CollectionPage({ params }: { params: { collectionS
 
 	return (
 		<>
-			<header className="mb-8 text-center md:mb-12 lg:mb-16 xl:mb-24">
-				<Title level={1}>
-					<span className="opacity-25">Collections / </span>
-					{collection.name}
-				</Title>
-				{collection.description && <p className="mt-4">{collection.description}</p>}
-			</header>
+			<Header suffix="Collections" title={collection.name} lead={collection.description} />
 			<ProductsList data-testid="products-list" products={products} />
 		</>
 	);

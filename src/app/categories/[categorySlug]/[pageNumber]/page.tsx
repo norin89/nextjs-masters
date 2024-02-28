@@ -2,8 +2,7 @@ import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getCategories, getCategoryBySlug, getProductsByCategorySlug } from '@/api/products';
-import { ProductsList } from '@/ui/organisms';
-import { Title } from '@/ui/atoms';
+import { Header, ProductsList } from '@/ui/organisms';
 import { Links } from '@/ui/molecules/Links/Links';
 
 const PRODUCTS_PER_PAGE = 4;
@@ -65,15 +64,9 @@ export default async function CategoryPage({
 
 	return (
 		<>
-			<header className="mb-8 text-center md:mb-12 lg:mb-16 xl:mb-24">
-				<Title level={1}>
-					<span className="opacity-25">Categories / </span>
-					{category.name}
-				</Title>
-				{category.description && <p className="mt-4">{category.description}</p>}
-			</header>
+			<Header suffix="Categories" title={category.name} lead={category.description} />
 			<ProductsList data-testid="products-list" products={productsOnPage} />
-			<nav className="mt-8 flex justify-center" aria-label="pagination">
+			<nav className="mt-12 flex justify-center" aria-label="pagination">
 				<Links
 					links={Array.from(Array(pagesCount)).map((_, idx) => ({
 						href: `/categories/${category.slug}/${idx + 1}` as Route,

@@ -2,8 +2,7 @@ import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getProducts } from '@/api/products';
-import { ProductsList } from '@/ui/organisms';
-import { Title } from '@/ui/atoms';
+import { Header, ProductsList } from '@/ui/organisms';
 import { Links } from '@/ui/molecules/Links/Links';
 
 const PRODUCTS_PER_PAGE = 4;
@@ -42,11 +41,9 @@ export default async function ProductsPaginatedPage({
 
 	return (
 		<>
-			<Title level={1} className="mb-8 text-center md:mb-12 lg:mb-16 xl:mb-24">
-				All products
-			</Title>
+			<Header title="All products" />
 			<ProductsList data-testid="products-list" products={productsOnPage} />
-			<nav className="mt-8 flex justify-center" aria-label="pagination">
+			<nav className="mt-12 flex justify-center" aria-label="pagination">
 				<Links
 					links={Array.from(Array(pagesCount)).map((_, idx) => ({
 						href: `/products/${idx + 1}` as Route,

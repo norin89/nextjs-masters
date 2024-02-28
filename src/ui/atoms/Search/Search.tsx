@@ -33,6 +33,7 @@ export const Search = ({
 			onChange={onChange}
 			defaultValue={defaultValue}
 			minLength={minLength}
+			required
 		/>
 		<IconSearch
 			size={24}

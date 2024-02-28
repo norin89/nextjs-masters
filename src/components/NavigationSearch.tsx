@@ -1,15 +1,23 @@
 'use client';
 
-import { useState, type FormEvent, type ChangeEvent } from 'react';
+import { useState, type FormEvent, type ChangeEvent, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useDebounce } from 'use-debounce';
 
+import { SEARCH_DEBOUNCE_TIME, SEARCH_QUERY_MIN_LENGTH } from '@/config';
 import { Search } from '@/ui/atoms';
 
 export function NavigationSearch(props: {}) {
 	const searchParams = useSearchParams();
+	const URLQuery = searchParams.get('query')?.toString();
 	const router = useRouter();
 
 	const [query, setQuery] = useState('');
+	const [debouncedQuery] = useDebounce(query, SEARCH_DEBOUNCE_TIME);
+
+	const showResults = (q: string) => {
+		router.replace(`/search?query=${encodeURI(q)}`);
+	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
@@ -17,15 +25,22 @@ export function NavigationSearch(props: {}) {
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		router.replace(`/search?query=${encodeURI(query)}`);
+		showResults(query);
 	};
+
+	useEffect(() => {
+		if (debouncedQuery.length >= SEARCH_QUERY_MIN_LENGTH) {
+			showResults(debouncedQuery);
+		}
+	}, [debouncedQuery]);
 
 	return (
 		<form onSubmit={handleSubmit} className="relative flex flex-1 flex-shrink-0" {...props}>
 			<Search
 				placeholder="Search"
-				defaultValue={searchParams.get('query')?.toString()}
+				defaultValue={URLQuery}
 				onChange={handleChange}
+				minLength={SEARCH_QUERY_MIN_LENGTH}
 			/>
 		</form>
 	);

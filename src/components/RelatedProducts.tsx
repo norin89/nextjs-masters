@@ -7,5 +7,5 @@ import { getProducts } from '@/api/products';
 export async function RelatedProducts(props: {}) {
 	const products = await getProducts(4);
 
-	return <ProductsList products={products} data-testid="related-products" {...props} />;
+	return <ProductsList products={products} {...props} />;
 }

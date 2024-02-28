@@ -65,7 +65,7 @@ export default async function ProductPage({ params }: { params: { productId: str
 			<Section isOdd>
 				<Header title="Related products"></Header>
 				<Suspense fallback={<span aria-busy="true" />}>
-					<RelatedProducts />
+					<RelatedProducts data-testid="related-products" />
 				</Suspense>
 			</Section>
 		</>

@@ -7,22 +7,20 @@ import { getCategories, getCollections } from '@/api/products';
 
 export async function Navigation(props: {}) {
 	const pathname = usePathname();
+	const categories = await getCategories();
 
 	return (
 		<NavBar
 			menu={[
 				{ text: 'Home', href: '/' },
-				{ text: 'All', href: '/products' },
 				{ text: 'Collections', href: '/collections' },
-				{ text: 'Categories', href: '/categories' },
+				{ text: 'All', href: '/products' },
+				...categories.map((category) => ({
+					text: category.name,
+					href: `/categories/${category.slug}` as Route,
+				})),
 			]}
 			submenu={[
-				...(`${pathname}/`.startsWith('/categories/')
-					? (await getCategories()).map((category) => ({
-							text: category.name,
-							href: `/categories/${category.slug}` as Route,
-						}))
-					: []),
 				...(`${pathname}/`.startsWith('/collections/')
 					? (await getCollections()).map((collection) => ({
 							text: collection.name,

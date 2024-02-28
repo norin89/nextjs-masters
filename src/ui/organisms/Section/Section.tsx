@@ -16,7 +16,7 @@ export const Section = ({
 		className={cx(
 			'w-full',
 			{
-				'bg-gray-200': isOdd,
+				'bg-gray-200 dark:bg-neutral-900': isOdd,
 			},
 			className,
 		)}

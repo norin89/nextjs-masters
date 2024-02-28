@@ -23,8 +23,6 @@ export const defaultArgs: ProductBoxProps = {
 		id: '1',
 		name: 'Product',
 		categories: [{ name: 'category' }],
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 		price: 5499,
 		images: [
 			{

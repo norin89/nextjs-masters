@@ -36,7 +36,7 @@ export default async function ProductPage({ params }: { params: { productId: str
 			<Section>
 				<div className="align-center flex flex-wrap items-center justify-center">
 					<div className="md:w-1/2 xl:w-1/3">
-						<div className="mb-8 bg-white p-4 text-gray-600 md:mb-0">
+						<div className="mb-8 rounded-xl border border-gray-200 bg-white p-4 md:mb-0 dark:border-gray-800">
 							{product.images[0] && (
 								<NextImage
 									src={product.images[0].url}

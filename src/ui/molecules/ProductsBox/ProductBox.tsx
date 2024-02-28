@@ -7,7 +7,7 @@ import { formatPrice } from '@/utils/formatPrice';
 import { Title, Badge } from '@/ui/atoms';
 
 export type ProductBoxProps = {
-	product: ProductFragment;
+	product: Omit<ProductFragment, 'description'>;
 };
 
 export const ProductBox = ({
@@ -15,7 +15,7 @@ export const ProductBox = ({
 	className,
 	...props
 }: ProductBoxProps & { className?: string }) => {
-	const { name, categories, description, price, images } = product;
+	const { name, categories, price, images } = product;
 
 	return (
 		<NextLink
@@ -42,11 +42,6 @@ export const ProductBox = ({
 				<Title level={2} size={5} className="mt-2 text-lg">
 					{name}
 				</Title>
-				{description && (
-					<p className="mt-2 text-xs leading-normal text-gray-600 dark:text-gray-300">
-						{description}
-					</p>
-				)}
 				<strong className="mt-auto self-end pt-4 text-2xl font-medium text-pink-500">
 					{formatPrice(price)}
 				</strong>

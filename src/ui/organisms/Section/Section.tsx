@@ -22,6 +22,6 @@ export const Section = ({
 		)}
 		{...props}
 	>
-		<div className="lg:p-18 mx-auto w-full max-w-screen-2xl p-6 md:p-12 xl:p-24">{children}</div>
+		<div className="mx-auto w-full max-w-screen-2xl p-6 md:p-12 lg:p-20 xl:p-24">{children}</div>
 	</section>
 );

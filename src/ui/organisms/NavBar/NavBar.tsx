@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react';
 import cx from 'classnames';
 
 import { type LinkType } from '@/types/link.type';
@@ -6,24 +7,29 @@ import { Links } from '@/ui/molecules/Links/Links';
 export type NavBarProps<T extends string> = {
 	menu: LinkType<T>[];
 	submenu?: LinkType<T>[];
+	children?: ReactNode;
 };
 
 export const NavBar = <T extends string>({
 	menu,
 	submenu,
 	className,
+	children,
 	...props
 }: NavBarProps<T> & { className?: string }) => (
 	<nav className={cx('sticky left-0 top-0 z-10 w-full backdrop-blur-md', className)} {...props}>
-		<Links
-			links={menu}
-			className="flex w-full flex-wrap items-center justify-center border-b border-gray-200/90 bg-white/90 py-2 lg:py-4 dark:border-gray-900/90 dark:bg-neutral-950/90"
-		/>
+		<div className="flex w-full flex-wrap items-center border-b border-gray-200/90 bg-white/90 py-2 lg:py-4 dark:border-gray-900/90 dark:bg-neutral-950/90">
+			<div className="mx-auto flex w-full max-w-screen-2xl px-6 md:px-12 lg:px-20 xl:px-24">
+				<Links links={menu} />
+				<div className="ml-auto">{children}</div>
+			</div>
+		</div>
 		{submenu && submenu?.length > 0 && (
-			<Links
-				links={submenu}
-				className="flex w-full flex-wrap items-center justify-center border-b border-gray-200/90 bg-gray-50/90 py-2 lg:py-4 dark:border-gray-900/90 dark:bg-neutral-900/90"
-			/>
+			<div className="flex w-full flex-wrap items-center border-b border-gray-200/90 bg-gray-50/90 py-2 lg:py-4 dark:border-gray-900/90 dark:bg-neutral-900/90">
+				<div className="mx-auto flex w-full max-w-screen-2xl px-6 md:px-12 lg:px-20 xl:px-24">
+					<Links links={submenu} />
+				</div>
+			</div>
 		)}
 	</nav>
 );

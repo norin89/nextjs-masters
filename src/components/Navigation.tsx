@@ -1,9 +1,11 @@
 'use client';
 
+import { Suspense } from 'react';
 import { type Route } from 'next';
 import { usePathname } from 'next/navigation';
 
 import type { CategoryFragment, CollectionFragment } from '@/gql/graphql';
+import { NavigationSearch } from '@/components/NavigationSearch';
 import { NavBar } from '@/ui/organisms';
 
 export function Navigation({
@@ -36,6 +38,10 @@ export function Navigation({
 					: []),
 			]}
 			{...props}
-		/>
+		>
+			<Suspense fallback={<span aria-busy="true" />}>
+				<NavigationSearch />
+			</Suspense>
+		</NavBar>
 	);
 }

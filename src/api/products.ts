@@ -6,6 +6,7 @@ import {
 	ProductsGetDocument,
 	ProductsGetByCategorySlugDocument,
 	ProductsGetByCollectionSlugDocument,
+	ProductsGetBySearchDocument,
 	ProductGetByIdDocument,
 	type CategoryFragment,
 	type CollectionFragment,
@@ -40,6 +41,15 @@ export const getCollectionBySlug = async (
 
 export const getProducts = async (take?: QueryProductsArgs['take']): Promise<ProductFragment[]> => {
 	const graphqlResponse = await executeGraphql(ProductsGetDocument, { take });
+	return graphqlResponse.products.data;
+};
+
+export const getProductsBySearch = async (
+	search: QueryProductsArgs['search'],
+): Promise<ProductFragment[]> => {
+	const graphqlResponse = await executeGraphql(ProductsGetBySearchDocument, {
+		search: search || '',
+	});
 	return graphqlResponse.products.data;
 };
 

@@ -2,12 +2,19 @@
 
 import { type Route } from 'next';
 import { usePathname } from 'next/navigation';
-import { NavBar } from '@/ui/organisms';
-import { getCategories, getCollections } from '@/api/products';
 
-export async function Navigation(props: {}) {
+import type { CategoryFragment, CollectionFragment } from '@/gql/graphql';
+import { NavBar } from '@/ui/organisms';
+
+export function Navigation({
+	categories,
+	collections,
+	...props
+}: {
+	categories: CategoryFragment[];
+	collections: CollectionFragment[];
+}) {
 	const pathname = usePathname();
-	const categories = await getCategories();
 
 	return (
 		<NavBar
@@ -22,7 +29,7 @@ export async function Navigation(props: {}) {
 			]}
 			submenu={[
 				...(`${pathname}/`.startsWith('/collections/')
-					? (await getCollections()).map((collection) => ({
+					? collections.map((collection) => ({
 							text: collection.name,
 							href: `/collections/${collection.slug}` as Route,
 						}))

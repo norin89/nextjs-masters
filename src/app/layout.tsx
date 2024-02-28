@@ -1,8 +1,9 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import type { Metadata } from 'next';
 import cx from 'classnames';
 import { Inter } from 'next/font/google';
 
+import { getCategories, getCollections } from '@/api/products';
 import { Navigation } from '@/components/Navigation';
 import './globals.css';
 
@@ -20,12 +21,13 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const categories = await getCategories();
+	const collections = await getCollections();
+
 	return (
 		<html lang="en">
 			<body className={cx(inter.className, 'flex min-h-screen flex-col')}>
-				<Suspense fallback={<span aria-busy="true" />}>
-					<Navigation />
-				</Suspense>
+				<Navigation categories={categories} collections={collections} />
 				<main className="flex grow items-center">
 					<div className="grow">{children}</div>
 				</main>

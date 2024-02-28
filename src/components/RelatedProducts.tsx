@@ -1,5 +1,3 @@
-'use client';
-
 import { ProductsList } from '@/ui/organisms';
 import { getProducts } from '@/api/products';
 

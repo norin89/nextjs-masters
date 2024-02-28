@@ -17,16 +17,7 @@ export function NavigationSearch(props: {}) {
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
-
-		const params = new URLSearchParams(searchParams);
-
-		if (query) {
-			params.set('query', query);
-		} else {
-			params.delete('query');
-		}
-
-		router.replace(`/search?${params.toString()}`);
+		router.replace(`/search?query=${encodeURI(query)}`);
 	};
 
 	return (

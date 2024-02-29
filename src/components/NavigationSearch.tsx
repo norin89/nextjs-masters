@@ -32,7 +32,7 @@ export function NavigationSearch(props: {}) {
 		if (debouncedQuery.length >= SEARCH_QUERY_MIN_LENGTH) {
 			showResults(debouncedQuery);
 		}
-	}, [debouncedQuery]);
+	}, [debouncedQuery, showResults]);
 
 	return (
 		<form onSubmit={handleSubmit} className="relative flex flex-1 flex-shrink-0" {...props}>

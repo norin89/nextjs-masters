@@ -1,3 +1,4 @@
+import { executeGraphql } from '@/api/api';
 import {
 	CategoriesGetDocument,
 	CategoryGetBySlugDocument,
@@ -13,7 +14,6 @@ import {
 	type ProductFragment,
 	type QueryProductsArgs,
 } from '@/gql/graphql';
-import { executeGraphql } from '@/api/api';
 
 export const getCategories = async (): Promise<CategoryFragment[]> => {
 	const graphqlResponse = await executeGraphql(CategoriesGetDocument);

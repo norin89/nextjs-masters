@@ -14,15 +14,15 @@ type Story = StoryObj<typeof Links>;
 export const defaultArgs: LinksProps = {
 	links: [
 		{
-			text: 'Home',
+			children: 'Home',
 			href: '/',
 		},
 		{
-			text: 'Second link',
+			children: 'Second link',
 			href: '#second-link',
 		},
 		{
-			text: 'Some other',
+			children: 'Some other',
 			href: '#some-other',
 		},
 	],

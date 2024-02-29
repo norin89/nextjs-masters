@@ -3,11 +3,10 @@
 import cx from 'classnames';
 import { usePathname } from 'next/navigation';
 
-import { Link } from '@/ui/atoms';
-import { type LinkType } from '@/types/link.type';
+import { Link, type LinkProps } from '@/ui/atoms';
 
 export type LinksProps = {
-	links: LinkType<string>[];
+	links: LinkProps<string>[];
 	/** If `true` only **exact** links will be marked as active */
 	isExact?: boolean;
 };
@@ -28,8 +27,8 @@ export const Links = ({
 					: `${pathname}/`.startsWith(`${link.href as string}/`);
 
 				return (
-					<li key={link.href.toString()}>
-						<Link link={{ ...link, isActive }} aria-current={isActive ? 'page' : undefined} />
+					<li key={JSON.stringify(link.href)}>
+						<Link {...link} isActive={isActive} aria-current={isActive ? 'page' : undefined} />
 					</li>
 				);
 			})}

@@ -1,37 +1,35 @@
 'use client';
 
+import { type ReactNode } from 'react';
 import { type Route } from 'next';
-import NextLink from 'next/link';
+import NextLink, { type LinkProps as NextLinkProps } from 'next/link';
 import cx from 'classnames';
 
-import { type LinkType } from '@/types/link.type';
-
-export interface LinkProps<T extends string> {
-	link: LinkType<T>;
+export interface LinkProps<T extends string> extends NextLinkProps<T> {
+	children: ReactNode;
+	isActive?: boolean;
 }
 
+/** Link component that extends Next.js `<Link />` with styles and `isActive` prop */
 export const Link = <T extends string>({
-	link,
+	children,
+	href,
+	isActive,
 	className,
 	...props
-}: LinkProps<T> & { className?: string }) => {
-	const { isActive, text, href, ...rest } = link;
-
-	return (
-		<NextLink
-			className={cx(
-				'inline-block text-nowrap rounded px-4 py-2 transition-colors duration-500',
-				{
-					'bg-blue-500 text-white': isActive,
-					'bg-transparent text-blue-500 hover:bg-gray-200 dark:hover:bg-gray-800': !isActive,
-				},
-				className,
-			)}
-			href={href as Route}
-			{...props}
-			{...rest}
-		>
-			{text}
-		</NextLink>
-	);
-};
+}: LinkProps<T> & { className?: string }) => (
+	<NextLink
+		className={cx(
+			'inline-block text-nowrap rounded px-4 py-2 transition-colors duration-500',
+			{
+				'bg-blue-500 text-white': isActive,
+				'bg-transparent text-blue-500 hover:bg-gray-200 dark:hover:bg-gray-800': !isActive,
+			},
+			className,
+		)}
+		href={href as Route}
+		{...props}
+	>
+		{children}
+	</NextLink>
+);

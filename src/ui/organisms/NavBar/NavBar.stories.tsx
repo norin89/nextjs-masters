@@ -16,13 +16,14 @@ export const Default: Story = {
 		menu: LinksDefaultArgs.links,
 		submenu: [
 			{
-				text: 'Submenu Link',
+				children: 'Submenu Link',
 				href: '#submenu',
 			},
 			{
-				text: 'Other one',
+				children: 'Other one',
 				href: '#other-one',
 			},
 		],
+		children: <i>Optional children is rendered here</i>,
 	},
 };

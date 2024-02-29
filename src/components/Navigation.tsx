@@ -21,18 +21,18 @@ export function Navigation({
 	return (
 		<NavBar
 			menu={[
-				{ text: 'Home', href: '/' },
-				{ text: 'Collections', href: '/collections' },
-				{ text: 'All', href: '/products' },
+				{ children: 'Home', href: '/' },
+				{ children: 'Collections', href: '/collections' },
+				{ children: 'All', href: '/products' },
 				...categories.map((category) => ({
-					text: category.name,
+					children: category.name,
 					href: `/categories/${category.slug}` as Route,
 				})),
 			]}
 			submenu={[
 				...(`${pathname}/`.startsWith('/collections/')
 					? collections.map((collection) => ({
-							text: collection.name,
+							children: collection.name,
 							href: `/collections/${collection.slug}` as Route,
 						}))
 					: []),

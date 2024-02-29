@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import React, { type ComponentProps, type ElementType } from 'react';
+import React, { type ComponentProps, type ElementType, type MouseEventHandler } from 'react';
 
 const DefaultElement = 'button';
 
@@ -12,6 +12,7 @@ export interface ButtonBaseProps<C> {
 	/** Icon component (from `lucide-react`) or SVG image */
 	icon?: React.FC<React.SVGProps<SVGSVGElement>>;
 	iconPosition?: 'before' | 'after';
+	onClick?: MouseEventHandler<unknown>;
 }
 
 type ButtonProps<C extends ElementType> = ButtonBaseProps<C> &
@@ -23,6 +24,7 @@ export const Button = <C extends ElementType = typeof DefaultElement>({
 	variant = 'secondary',
 	icon,
 	iconPosition = 'after',
+	onClick,
 	className,
 	...props
 }: ButtonProps<C> & { className?: string }) => {
@@ -39,6 +41,7 @@ export const Button = <C extends ElementType = typeof DefaultElement>({
 				{ 'bg-red-600 text-white hover:bg-red-700': variant === 'remove' },
 				className,
 			)}
+			onClick={onClick}
 			{...props}
 		>
 			{children}

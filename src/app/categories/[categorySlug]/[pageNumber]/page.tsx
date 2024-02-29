@@ -69,8 +69,8 @@ export default async function CategoryPage({
 			<nav className="mt-12 flex justify-center" aria-label="pagination">
 				<Links
 					links={Array.from(Array(pagesCount)).map((_, idx) => ({
+						children: `${idx + 1}`,
 						href: `/categories/${category.slug}/${idx + 1}` as Route,
-						text: `${idx + 1}`,
 					}))}
 					isExact
 				/>

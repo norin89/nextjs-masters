@@ -8,10 +8,12 @@ export interface ButtonBaseProps<C> {
 	as?: C;
 	/** Button text */
 	children: string;
-	variant?: 'primary' | 'secondary' | 'add' | 'remove';
+	variant?: 'primary' | 'secondary' | 'tertiary' | 'add' | 'remove';
 	/** Icon component (from `lucide-react`) or SVG image */
 	icon?: React.FC<React.SVGProps<SVGSVGElement>>;
 	iconPosition?: 'before' | 'after';
+	/** If `true` will be full width */
+	isBlock?: boolean;
 	onClick?: MouseEventHandler<unknown>;
 }
 
@@ -24,6 +26,7 @@ export const Button = <C extends ElementType = typeof DefaultElement>({
 	variant = 'secondary',
 	icon,
 	iconPosition = 'after',
+	isBlock,
 	onClick,
 	className,
 	...props
@@ -34,11 +37,13 @@ export const Button = <C extends ElementType = typeof DefaultElement>({
 	return (
 		<Component
 			className={cx(
-				'inline-flex items-center rounded px-4 py-2 font-medium transition-all duration-500',
+				'inline-flex min-h-10 items-center justify-center rounded px-3 py-2 font-medium transition-all duration-500',
 				{ 'bg-blue-500 text-white hover:bg-blue-600': variant === 'primary' },
-				{ 'bg-gray-200 text-gray-800 hover:bg-gray-300': variant === 'secondary' },
+				{ 'border border-current text-blue-500 hover:text-blue-400': variant === 'secondary' },
+				{ 'bg-gray-200 text-gray-800 hover:bg-gray-300': variant === 'tertiary' },
 				{ 'bg-green-600 text-white hover:bg-green-700': variant === 'add' },
 				{ 'bg-red-600 text-white hover:bg-red-700': variant === 'remove' },
+				{ 'w-full': isBlock },
 				className,
 			)}
 			onClick={onClick}
@@ -48,8 +53,9 @@ export const Button = <C extends ElementType = typeof DefaultElement>({
 			{Icon && (
 				<Icon
 					className={cx('h-4 w-4', {
-						'-order-1 mr-3': iconPosition === 'before',
-						'ml-3': iconPosition != 'before',
+						'-order-1': iconPosition === 'before',
+						'mr-3': iconPosition === 'before' && children,
+						'ml-3': iconPosition != 'before' && children,
 					})}
 				/>
 			)}

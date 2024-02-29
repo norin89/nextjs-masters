@@ -26,6 +26,7 @@ export async function getOrCreateCart(): Promise<CartFragment> {
 	}
 
 	cookies().set('cartId', cart.id);
+
 	return cart;
 }
 

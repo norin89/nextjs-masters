@@ -1,4 +1,5 @@
 fragment Cart on Cart {
+    # TODO: Should be `...Cart` but can't due to API limitations
     id
     items {
         quantity
@@ -6,6 +7,10 @@ fragment Cart on Cart {
             id
             name
             price
+            images {
+                url
+                alt
+            }
         }
     }
 }

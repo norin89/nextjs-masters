@@ -3,10 +3,12 @@
 import { Suspense } from 'react';
 import { type Route } from 'next';
 import { usePathname } from 'next/navigation';
+import { ShoppingBag as IconShoppingBag } from 'lucide-react';
 
 import type { CategoryFragment, CollectionFragment } from '@/gql/graphql';
 import { NavigationSearch } from '@/components/NavigationSearch';
 import { NavBar } from '@/ui/organisms';
+import { Link } from '@/ui/atoms';
 
 export function Navigation({
 	categories,
@@ -39,9 +41,15 @@ export function Navigation({
 			]}
 			{...props}
 		>
-			<Suspense fallback={<span aria-busy="true" />}>
-				<NavigationSearch />
-			</Suspense>
+			<div className="flex items-center gap-3">
+				<Suspense fallback={<span aria-busy="true" />}>
+					<NavigationSearch />
+				</Suspense>
+				<Link href="/cart" title="Cart">
+					<span className="sr-only">Cart</span>
+					<IconShoppingBag />
+				</Link>
+			</div>
 		</NavBar>
 	);
 }

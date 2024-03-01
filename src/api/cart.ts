@@ -21,6 +21,12 @@ export const getCartById = async (
 	return cart;
 };
 
+export const getCartFromCookies = async (): Promise<CartFragment | null | undefined> => {
+	const cartId = cookies().get(CART_COOKIE_NAME)?.value;
+
+	return cartId ? getCartById(cartId) : null;
+};
+
 export async function getOrCreateCart(): Promise<CartFragment> {
 	const cartId = cookies().get(CART_COOKIE_NAME)?.value;
 	const { cartFindOrCreate: cart } = await executeGraphql(CartFindOrCreateDocument, { id: cartId });

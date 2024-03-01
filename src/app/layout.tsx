@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import cx from 'classnames';
 import { Inter } from 'next/font/google';
 
+import { getCartFromCookies } from '@/api/cart';
 import { getCategories, getCollections } from '@/api/products';
 import { Navigation } from '@/components/Navigation';
 import './globals.css';
@@ -23,11 +24,14 @@ export default async function RootLayout({
 }>) {
 	const categories = await getCategories();
 	const collections = await getCollections();
+	const cart = await getCartFromCookies();
+
+	const cartCounter = cart?.items.reduce((acc, item) => acc + item.quantity, 0) ?? 0;
 
 	return (
 		<html lang="en">
 			<body className={cx(inter.className, 'flex min-h-screen flex-col')}>
-				<Navigation categories={categories} collections={collections} />
+				<Navigation categories={categories} collections={collections} cartCounter={cartCounter} />
 				<main className="flex grow items-center">
 					<div className="grow">{children}</div>
 				</main>

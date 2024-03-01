@@ -4,6 +4,6 @@ mutation CartChangeItemQuantity($id: ID!, $productId: ID!, $quantity: Int!) {
         productId: $productId,
         quantity: $quantity
     ) {
-        ...Cart
+        id
     }
 }

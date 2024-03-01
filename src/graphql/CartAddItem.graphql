@@ -8,6 +8,6 @@ mutation CartAddItem($id: ID!, $productId: String!, $quantity: Int = 1) {
             }
         }
     ) {
-        ...Cart
+        id
     }
 }

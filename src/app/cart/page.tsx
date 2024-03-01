@@ -36,7 +36,7 @@ export default async function ProductsPaginatedPage() {
 				</div>
 			) : (
 				<div className="align-center grid grid-flow-row-dense grid-cols-3 gap-4">
-					<div className="col-span-3 md:col-span-2">
+					<div className="col-span-3 lg:col-span-2">
 						<div className="overflow-x-auto rounded-lg bg-white p-4 text-black shadow-md md:p-6 dark:bg-gray-800 dark:text-white">
 							<table className="-mt-4 block w-full text-left sm:table">
 								<tbody className="block sm:table-row-group">
@@ -52,7 +52,7 @@ export default async function ProductsPaginatedPage() {
 												>
 													{item.product.images[0] && (
 														<Image
-															className="inline-block w-24 md:w-32 xl:w-48"
+															className="inline-block w-32 md:w-40 lg:w-32 2xl:w-48"
 															src={item.product.images[0].url}
 															alt={item.product.images[0].alt || item.product.name}
 															width={192}
@@ -68,7 +68,7 @@ export default async function ProductsPaginatedPage() {
 													</Title>
 												</NextLink>
 											</td>
-											<td className="block py-4 sm:table-cell">
+											<td className="block pb-4 pt-0 sm:table-cell sm:pt-4">
 												<QuantityInput item={item} />
 											</td>
 										</tr>
@@ -85,7 +85,7 @@ export default async function ProductsPaginatedPage() {
 						</div>
 					</div>
 
-					<div className="col-span-3 md:col-span-1">
+					<div className="col-span-3 lg:col-span-1">
 						<div className="sticky top-[100px] rounded-lg bg-white p-4 text-black shadow-md md:p-6 dark:bg-gray-800 dark:text-white">
 							<Title level={2} size={3}>
 								Order summary

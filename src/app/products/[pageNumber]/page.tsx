@@ -29,7 +29,7 @@ export default async function ProductsPaginatedPage({
 }) {
 	const products = await getProducts();
 	const pagesCount = countPages(products.length);
-	const currentPage = parseInt(params.pageNumber, 10);
+	const currentPage = parseInt(params.pageNumber);
 	const productsOnPage = products.slice(
 		(currentPage - 1) * PRODUCTS_PER_PAGE,
 		currentPage * PRODUCTS_PER_PAGE,

@@ -7,7 +7,7 @@ import NextLink from 'next/link';
 import { CART_COOKIE_NAME } from '@/config';
 import { getCartById } from '@/api/cart';
 import { formatPrice } from '@/utils/formatPrice';
-import { QuantityInput } from '@/app/cart/QuantityInput';
+import { QuantityAndPrice } from '@/app/cart/QuantityAndPrice';
 import { Header, Section } from '@/ui/organisms';
 import { Button, Title } from '@/ui/atoms';
 
@@ -69,7 +69,7 @@ export default async function ProductsPaginatedPage() {
 												</NextLink>
 											</td>
 											<td className="block pb-4 pt-0 sm:table-cell sm:pt-4">
-												<QuantityInput item={item} />
+												<QuantityAndPrice item={item} />
 											</td>
 										</tr>
 									))}

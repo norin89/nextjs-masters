@@ -1,4 +1,4 @@
-import type { ChangeEvent } from 'react';
+import type { ChangeEventHandler } from 'react';
 import cx from 'classnames';
 import { Search as IconSearch } from 'lucide-react';
 
@@ -7,7 +7,7 @@ export interface SearchProps {
 	placeholder: string;
 	defaultValue?: string;
 	minLength?: number;
-	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+	onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const Search = ({

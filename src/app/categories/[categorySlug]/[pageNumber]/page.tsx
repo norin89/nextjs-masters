@@ -52,7 +52,7 @@ export default async function CategoryPage({
 	const products = await getProductsByCategorySlug(params.categorySlug);
 
 	const pagesCount = countPages(products.length);
-	const currentPage = parseInt(params.pageNumber, 10);
+	const currentPage = parseInt(params.pageNumber);
 	const productsOnPage = products.slice(
 		(currentPage - 1) * PRODUCTS_PER_PAGE,
 		currentPage * PRODUCTS_PER_PAGE,

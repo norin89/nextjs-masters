@@ -41,7 +41,7 @@ export const Button = <C extends ElementType = typeof DefaultElement>({
 	return (
 		<Component
 			className={cx(
-				'inline-flex min-h-10 items-center justify-center rounded px-3 py-2 font-medium transition-all duration-500 disabled:opacity-50',
+				'inline-flex min-h-10 items-center justify-center rounded px-3 py-2 font-medium transition-all duration-500 disabled:cursor-not-allowed disabled:opacity-50',
 				{ 'bg-blue-500 text-white hover:bg-blue-600': variant === 'primary' },
 				{ 'border border-current text-blue-500 hover:text-blue-400': variant === 'secondary' },
 				{ 'bg-gray-200 text-gray-800 hover:bg-gray-300': variant === 'tertiary' },

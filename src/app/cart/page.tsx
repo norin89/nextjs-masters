@@ -1,11 +1,13 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { Minus as IconMinus, Plus as IconPlus } from 'lucide-react';
 
+import { CART_COOKIE_NAME } from '@/config';
 import { getCartById } from '@/api/cart';
 import { formatPrice } from '@/utils/formatPrice';
+import { QuantityInput } from '@/app/cart/QuantityInput';
 import { Header, Section } from '@/ui/organisms';
 import { Button, Title } from '@/ui/atoms';
 
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProductsPaginatedPage() {
-	const cartId = cookies().get('cartId')?.value;
+	const cartId = cookies().get(CART_COOKIE_NAME)?.value;
 	const cart = cartId ? await getCartById(cartId) : null;
 
 	const totalPrice = cart?.items.reduce(
@@ -67,44 +69,7 @@ export default async function ProductsPaginatedPage() {
 												</NextLink>
 											</td>
 											<td className="block py-4 sm:table-cell">
-												<div className="flex w-full items-center gap-2">
-													<div className="inline-flex items-center">
-														<Button
-															variant="tertiary"
-															icon={IconMinus}
-															title="Decrease quantity"
-															className="rounded-r-none"
-														>
-															{''}
-														</Button>
-														<input
-															type="number"
-															className="min-h-10 w-14 border border-gray-200 bg-gray-50 px-3 py-2 text-center text-sm text-gray-900 [appearance:textfield] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-															defaultValue={item.quantity}
-															autoComplete="off"
-															required
-														/>
-														<Button
-															variant="tertiary"
-															icon={IconPlus}
-															title="Increase quantity"
-															className="rounded-l-none"
-														>
-															{''}
-														</Button>
-													</div>
-													<div className="inline-flex grow flex-col text-right">
-														<span className="text-xl">
-															{formatPrice(item.product.price * item.quantity)}
-														</span>
-														{item.quantity > 1 && (
-															<span className="text-sm opacity-65">
-																{'per item '}
-																{formatPrice(item.product.price)}
-															</span>
-														)}
-													</div>
-												</div>
+												<QuantityInput item={item} />
 											</td>
 										</tr>
 									))}

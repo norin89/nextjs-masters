@@ -6,9 +6,9 @@ import NextImage from 'next/image';
 import { getProductById } from '@/api/products';
 import { formatPrice } from '@/utils/formatPrice';
 import { RelatedProducts } from '@/components/RelatedProducts';
+import { AddToCartButton } from '@/components/AddToCartButton';
 import { Header, Section } from '@/ui/organisms';
 import { Badge, Title } from '@/ui/atoms';
-import { AddToCartButton } from '@/app/product/[productId]/AddToCartButton';
 import { addProductToCartAction } from '@/actions/cart';
 
 export async function generateMetadata({

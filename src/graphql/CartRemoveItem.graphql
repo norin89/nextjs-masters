@@ -1,12 +1,7 @@
-mutation CartAddItem($id: ID!, $productId: String!, $quantity: Int = 1) {
-    cartAddItem(
+mutation CartRemoveItem($id: ID!, $productId: ID!) {
+    cartRemoveItem(
         id: $id
-        input: {
-            item: {
-                productId: $productId,
-                quantity: $quantity
-            }
-        }
+        productId: $productId,
     ) {
         # TODO: Should be `...Cart` but can't due to API limitations
         id

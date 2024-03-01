@@ -1,18 +1,5 @@
 mutation CartFindOrCreate($id: ID) {
     cartFindOrCreate(id: $id, input: {}) {
-        # TODO: Should be `...Cart` but can't due to API limitations
-        id
-        items {
-            quantity
-            product {
-                id
-                name
-                price
-                images {
-                    url
-                    alt
-                }
-            }
-        }
+        ...Cart
     }
 }

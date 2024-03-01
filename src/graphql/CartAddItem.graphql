@@ -8,15 +8,6 @@ mutation CartAddItem($id: ID!, $productId: String!, $quantity: Int = 1) {
             }
         }
     ) {
-        # TODO: Should be `...Cart` but can't due to API limitations
-        id
-        items {
-            quantity
-            product {
-                id
-                name
-                price
-            }
-        }
+        ...Cart
     }
 }

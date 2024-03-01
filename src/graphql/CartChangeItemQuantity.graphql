@@ -4,15 +4,6 @@ mutation CartChangeItemQuantity($id: ID!, $productId: ID!, $quantity: Int!) {
         productId: $productId,
         quantity: $quantity
     ) {
-        # TODO: Should be `...Cart` but can't due to API limitations
-        id
-        items {
-            quantity
-            product {
-                id
-                name
-                price
-            }
-        }
+        ...Cart
     }
 }

@@ -3,15 +3,6 @@ mutation CartRemoveItem($id: ID!, $productId: ID!) {
         id: $id
         productId: $productId,
     ) {
-        # TODO: Should be `...Cart` but can't due to API limitations
-        id
-        items {
-            quantity
-            product {
-                id
-                name
-                price
-            }
-        }
+        ...Cart
     }
 }

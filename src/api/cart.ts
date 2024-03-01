@@ -8,9 +8,9 @@ import {
 	CartAddItemDocument,
 	CartRemoveItemDocument,
 	ProductGetByIdDocument,
+	CartChangeItemQuantityDocument,
 	type CartFragment,
 	type CartItem,
-	CartChangeItemQuantityDocument,
 } from '@/gql/graphql';
 
 export const getCartById = async (
@@ -45,6 +45,18 @@ export async function addProductToCart(
 
 	if (!product) {
 		throw new Error(`Product with id ${productId} not found`);
+	}
+
+	const cart = await getCartById(id);
+	const productInCart = cart?.items.find((item) => item.product.id === productId);
+
+	if (productInCart) {
+		await changeProductQuantityInCart(
+			id,
+			productInCart.product.id,
+			productInCart.quantity + quantity,
+		);
+		return;
 	}
 
 	await executeGraphql(CartAddItemDocument, {

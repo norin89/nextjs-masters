@@ -1,8 +1,9 @@
-import type { Metadata } from 'next';
+import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getCollections, getCollectionBySlug, getProductsByCollectionSlug } from '@/api/products';
 import { Header, ProductsList, Section } from '@/ui/organisms';
+import { Links } from '@/ui/molecules';
 
 export async function generateMetadata({
 	params,
@@ -28,6 +29,7 @@ export async function generateStaticParams() {
 }
 
 export default async function CollectionPage({ params }: { params: { collectionSlug: string } }) {
+	const collections = await getCollections();
 	const collection = await getCollectionBySlug(params.collectionSlug);
 	const products = await getProductsByCollectionSlug(params.collectionSlug);
 
@@ -36,14 +38,24 @@ export default async function CollectionPage({ params }: { params: { collectionS
 	}
 
 	return (
-		<Section>
-			<Header
-				level={1}
-				suffix="Collections"
-				title={collection.name}
-				lead={collection.description}
-			/>
-			<ProductsList data-testid="products-list" products={products} />
-		</Section>
+		<>
+			<Section isTight>
+				<Links
+					links={collections.map((collection) => ({
+						children: collection.name,
+						href: `/collections/${collection.slug}` as Route,
+					}))}
+				/>
+			</Section>
+			<Section>
+				<Header
+					level={1}
+					suffix="Collections"
+					title={collection.name}
+					lead={collection.description}
+				/>
+				<ProductsList data-testid="products-list" products={products} />
+			</Section>
+		</>
 	);
 }

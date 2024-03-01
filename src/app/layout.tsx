@@ -1,11 +1,14 @@
-import React from 'react';
-import type { Metadata } from 'next';
-import cx from 'classnames';
+import React, { Suspense } from 'react';
+import type { Metadata, Route } from 'next';
 import { Inter } from 'next/font/google';
+import { ShoppingBag as IconShoppingBag } from 'lucide-react';
+import cx from 'classnames';
 
 import { getCartFromCookies } from '@/api/cart';
-import { getCategories, getCollections } from '@/api/products';
-import { Navigation } from '@/components/Navigation';
+import { getCategories } from '@/api/products';
+import { NavigationSearch } from '@/components/NavigationSearch';
+import { NavBar } from '@/ui/organisms';
+import { Link } from '@/ui/atoms';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -23,7 +26,6 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const categories = await getCategories();
-	const collections = await getCollections();
 	const cart = await getCartFromCookies();
 
 	const cartCounter = cart?.items.reduce((acc, item) => acc + item.quantity, 0) ?? 0;
@@ -31,7 +33,31 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body className={cx(inter.className, 'flex min-h-screen flex-col')}>
-				<Navigation categories={categories} collections={collections} cartCounter={cartCounter} />
+				<NavBar
+					links={[
+						{ children: 'Home', href: '/' },
+						{ children: 'Collections', href: '/collections' },
+						{ children: 'All', href: '/products' },
+						...categories.map((category) => ({
+							children: category.name,
+							href: `/categories/${category.slug}` as Route,
+						})),
+					]}
+				>
+					<div className="flex items-center gap-3">
+						<Suspense fallback={<span aria-busy="true" />}>
+							<NavigationSearch />
+						</Suspense>
+						<Link href="/cart" title="Cart" className="relative">
+							<IconShoppingBag />
+							{cartCounter && (
+								<span className="absolute -end-1 -top-1 inline-flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-pink-400 text-xs font-bold text-white dark:border-gray-900 dark:text-black">
+									{cartCounter}
+								</span>
+							)}
+						</Link>
+					</div>
+				</NavBar>
 				<main className="flex grow items-center">
 					<div className="grow">{children}</div>
 				</main>

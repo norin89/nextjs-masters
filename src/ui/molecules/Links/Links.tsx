@@ -20,7 +20,7 @@ export const Links = ({
 	const pathname = usePathname();
 
 	return (
-		<ul className={cx('flex gap-3', className)} {...props}>
+		<ul className={cx('flex flex-wrap gap-3', className)} {...props}>
 			{links.map((link) => {
 				const isActive = isExact
 					? link.href === pathname

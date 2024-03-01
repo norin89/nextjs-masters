@@ -7,7 +7,7 @@ import {
 	removeProductFromCart,
 } from '@/api/cart';
 
-export async function addProductToCartAction(formData: FormData) {
+export async function addItemToCartAction(formData: FormData) {
 	// TODO: Typescript doesn't support typed `FormData` yet - https://github.com/microsoft/TypeScript/issues/43797
 	const productId = formData.get('productId') as string;
 

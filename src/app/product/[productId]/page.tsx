@@ -9,7 +9,7 @@ import { RelatedProducts } from '@/components/RelatedProducts';
 import { AddToCartButton } from '@/components/AddToCartButton';
 import { Header, Section } from '@/ui/organisms';
 import { Badge, Title } from '@/ui/atoms';
-import { addProductToCartAction } from '@/actions/cart';
+import { addItemToCartAction } from '@/actions/cart';
 
 export async function generateMetadata({
 	params,
@@ -61,7 +61,7 @@ export default async function ProductPage({ params }: { params: { productId: str
 							</strong>
 						</header>
 						<p className="my-4">{product.description}</p>
-						<form action={addProductToCartAction}>
+						<form action={addItemToCartAction}>
 							<input type="hidden" name="productId" value={product.id} />
 							<AddToCartButton />
 						</form>

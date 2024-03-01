@@ -6,10 +6,11 @@ import {
 	CartGetByIdDocument,
 	CartFindOrCreateDocument,
 	CartAddItemDocument,
+	CartRemoveItemDocument,
 	ProductGetByIdDocument,
 	type CartFragment,
-	type CartAddItemMutationVariables,
-	CartRemoveItemDocument,
+	type CartItem,
+	CartChangeItemQuantityDocument,
 } from '@/gql/graphql';
 
 export const getCartById = async (
@@ -34,9 +35,9 @@ export async function getOrCreateCart(): Promise<CartFragment> {
 }
 
 export async function addProductToCart(
-	id: CartAddItemMutationVariables['id'],
-	productId: CartAddItemMutationVariables['productId'],
-	quantity: CartAddItemMutationVariables['quantity'] = 1,
+	id: CartFragment['id'],
+	productId: CartItem['product']['id'],
+	quantity: CartItem['quantity'] = 1,
 ) {
 	const { product } = await executeGraphql(ProductGetByIdDocument, {
 		id: productId,
@@ -54,8 +55,8 @@ export async function addProductToCart(
 }
 
 export async function removeProductFromCart(
-	id: CartAddItemMutationVariables['id'],
-	productId: CartAddItemMutationVariables['productId'],
+	id: CartFragment['id'],
+	productId: CartItem['product']['id'],
 ) {
 	const { product } = await executeGraphql(ProductGetByIdDocument, {
 		id: productId,
@@ -68,5 +69,25 @@ export async function removeProductFromCart(
 	await executeGraphql(CartRemoveItemDocument, {
 		id,
 		productId,
+	});
+}
+
+export async function changeProductQuantityInCart(
+	id: CartFragment['id'],
+	productId: CartItem['product']['id'],
+	quantity: CartItem['quantity'],
+) {
+	const { product } = await executeGraphql(ProductGetByIdDocument, {
+		id: productId,
+	});
+
+	if (!product) {
+		throw new Error(`Product with id ${productId} not found`);
+	}
+
+	await executeGraphql(CartChangeItemQuantityDocument, {
+		id,
+		productId,
+		quantity,
 	});
 }

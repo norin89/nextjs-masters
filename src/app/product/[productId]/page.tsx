@@ -2,14 +2,14 @@ import { Suspense } from 'react';
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import NextImage from 'next/image';
-import { Plus } from 'lucide-react';
 
-import { addProductToCartAction } from '@/actions/cart';
 import { getProductById } from '@/api/products';
 import { formatPrice } from '@/utils/formatPrice';
 import { RelatedProducts } from '@/components/RelatedProducts';
 import { Header, Section } from '@/ui/organisms';
-import { Badge, Button, Title } from '@/ui/atoms';
+import { Badge, Title } from '@/ui/atoms';
+import { AddToCartButton } from '@/app/product/[productId]/AddToCartButton';
+import { addProductToCartAction } from '@/actions/cart';
 
 export async function generateMetadata({
 	params,
@@ -63,9 +63,7 @@ export default async function ProductPage({ params }: { params: { productId: str
 						<p className="my-4">{product.description}</p>
 						<form action={addProductToCartAction}>
 							<input type="hidden" name="productId" value={product.id} />
-							<Button type="submit" variant="add" icon={Plus}>
-								Add to cart
-							</Button>
+							<AddToCartButton />
 						</form>
 					</div>
 				</div>

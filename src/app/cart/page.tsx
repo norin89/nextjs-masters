@@ -9,6 +9,7 @@ import { getCartById } from '@/api/cart';
 import { formatPrice } from '@/utils/formatPrice';
 import { QuantityAndPrice } from '@/app/cart/QuantityAndPrice';
 import { Header, Section } from '@/ui/organisms';
+import { Card } from '@/ui/molecules';
 import { Button, Title } from '@/ui/atoms';
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default async function ProductsPaginatedPage() {
 	return (
 		<Section>
 			<Header level={1} title="Shopping cart" />
-			{!cart ? (
+			{!cart || cart.items.length <= 0 ? (
 				<div className="text-center">
 					<p className="m-8 text-xl">Your cart is empty</p>
 					<Button as={NextLink} variant="primary" href="/products">
@@ -37,7 +38,7 @@ export default async function ProductsPaginatedPage() {
 			) : (
 				<div className="align-center grid grid-flow-row-dense grid-cols-3 gap-4">
 					<div className="col-span-3 lg:col-span-2">
-						<div className="overflow-x-auto rounded-lg bg-white p-4 text-black shadow-md md:p-6 dark:bg-gray-800 dark:text-white">
+						<Card>
 							<table className="-mt-4 block w-full text-left sm:table">
 								<tbody className="block sm:table-row-group">
 									{cart.items.map((item) => (
@@ -48,7 +49,7 @@ export default async function ProductsPaginatedPage() {
 											<td className="block py-4 sm:table-cell">
 												<NextLink
 													href={`/product/${item.product.id}`}
-													className="group flex items-center gap-3 md:gap-4 xl:gap-6"
+													className="group inline-flex items-center gap-3 md:gap-4 xl:gap-6"
 												>
 													{item.product.images[0] && (
 														<Image
@@ -82,11 +83,12 @@ export default async function ProductsPaginatedPage() {
 									</tr>
 								</tbody>
 							</table>
-						</div>
+						</Card>
 					</div>
 
 					<div className="col-span-3 lg:col-span-1">
-						<div className="sticky top-[100px] rounded-lg bg-white p-4 text-black shadow-md md:p-6 dark:bg-gray-800 dark:text-white">
+						{/* TODO: Calculate top */}
+						<Card className="sticky top-[100px]">
 							<Title level={2} size={3}>
 								Order summary
 							</Title>
@@ -101,7 +103,7 @@ export default async function ProductsPaginatedPage() {
 							<Button as={NextLink} variant="primary" href="/" isBlock>
 								Checkout
 							</Button>
-						</div>
+						</Card>
 					</div>
 				</div>
 			)}

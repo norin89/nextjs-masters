@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { getCategories, getCategoryBySlug, getProductsByCategorySlug } from '@/api/products';
 import { Header, ProductsList, Section } from '@/ui/organisms';
-import { Links } from '@/ui/molecules/Links/Links';
+import { Links } from '@/ui/molecules';
 
 const PRODUCTS_PER_PAGE = 4;
 

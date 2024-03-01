@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import cx from 'classnames';
 
-import { Links } from '@/ui/molecules/Links/Links';
+import { Links } from '@/ui/molecules';
 import { type LinkProps } from '@/ui/atoms';
 
 export type NavBarProps = {

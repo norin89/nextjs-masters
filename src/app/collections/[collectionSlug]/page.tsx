@@ -1,8 +1,10 @@
-import type { Metadata, Route } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import NextLink from 'next/link';
 import { getCollections, getCollectionBySlug, getProductsByCollectionSlug } from '@/api/products';
-import { Header, ProductsList, Section } from '@/ui/organisms';
+import { Products } from '@/components/Products';
+import { Header, Section } from '@/ui/organisms';
 import { Links } from '@/ui/molecules';
 
 export async function generateMetadata({
@@ -42,8 +44,9 @@ export default async function CollectionPage({ params }: { params: { collectionS
 			<Section isTight>
 				<Links
 					links={collections.map((collection) => ({
+						as: NextLink,
 						children: collection.name,
-						href: `/collections/${collection.slug}` as Route,
+						href: `/collections/${collection.slug}`,
 					}))}
 				/>
 			</Section>
@@ -54,7 +57,7 @@ export default async function CollectionPage({ params }: { params: { collectionS
 					title={collection.name}
 					lead={collection.description}
 				/>
-				<ProductsList data-testid="products-list" products={products} />
+				<Products data-testid="products-list" products={products} />
 			</Section>
 		</>
 	);

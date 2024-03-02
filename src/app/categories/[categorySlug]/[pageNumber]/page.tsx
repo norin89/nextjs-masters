@@ -1,8 +1,10 @@
-import type { Metadata, Route } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import NextLink from 'next/link';
 
 import { getCategories, getCategoryBySlug, getProductsByCategorySlug } from '@/api/products';
-import { Header, ProductsList, Section } from '@/ui/organisms';
+import { Products } from '@/components/Products';
+import { Header, Section } from '@/ui/organisms';
 import { Links } from '@/ui/molecules';
 
 const PRODUCTS_PER_PAGE = 4;
@@ -65,14 +67,15 @@ export default async function CategoryPage({
 	return (
 		<Section>
 			<Header level={1} suffix="Categories" title={category.name} lead={category.description} />
-			<ProductsList data-testid="products-list" products={productsOnPage} />
+			<Products data-testid="products-list" products={productsOnPage} />
 			<nav className="mt-12 flex justify-center" aria-label="pagination">
 				<Links
 					links={Array.from(Array(pagesCount)).map((_, idx) => ({
+						as: NextLink,
 						children: `${idx + 1}`,
-						href: `/categories/${category.slug}/${idx + 1}` as Route,
+						href: `/categories/${category.slug}/${idx + 1}`,
 					}))}
-					isExact
+					// isExact
 				/>
 			</nav>
 		</Section>

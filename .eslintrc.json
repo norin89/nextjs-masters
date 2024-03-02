@@ -70,6 +70,17 @@
 			"rules": {
 				"import/no-default-export": "off"
 			}
+		},
+		{
+			"files": ["src/ui/**/*.ts?(x)"],
+			"rules": {
+				"no-restricted-imports": ["error", {
+					"patterns": [{
+						"group": ["next", "next/*"],
+						"message": "UI components must be 'dummy'. Extend them with logic in 'app' components."
+					}]
+				}]
+			}
 		}
 	],
 	"ignorePatterns": ["*.js", "*.jsx"]

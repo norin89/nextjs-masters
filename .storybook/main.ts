@@ -14,6 +14,9 @@ const config: StorybookConfig = {
 		'@storybook/addon-themes',
 		'@storybook/themes',
 	],
+	docs: {
+		autodocs: true,
+	},
 	framework: {
 		name: '@storybook/nextjs',
 		options: {},

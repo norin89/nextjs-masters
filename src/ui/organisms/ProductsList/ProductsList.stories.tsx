@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { defaultArgs as productDefaultArgs } from '../../molecules/ProductsBox/ProductBox.stories';
-import { ProductsList, type ProductsListProps } from './ProductsList';
+import { Default as DefaultProductBox } from '../../molecules/ProductsBox/ProductBox.stories';
+import { ProductsList } from './ProductsList';
 
 const meta: Meta<typeof ProductsList> = {
 	title: 'Organisms / ProductsList',
@@ -11,35 +11,29 @@ const meta: Meta<typeof ProductsList> = {
 export default meta;
 type Story = StoryObj<typeof ProductsList>;
 
-const defaultArgs: ProductsListProps = {
-	products: [
-		productDefaultArgs.product,
-		{
-			id: '2',
-			name: 'Second product',
-			categories: [{ name: 'category' }],
-			price: 81900,
-			images: [{ url: 'https://prd.place/400?padding=20&id=2' }],
-		},
-		{
-			id: '3',
-			name: 'Another product with rather pretty long name',
-			categories: [{ name: 'other category' }],
-			price: 167500,
-			images: [{ url: 'https://prd.place/400?padding=20&id=3' }],
-		},
-		{
-			id: '4',
-			name: 'The last one',
-			categories: [{ name: 'category' }],
-			price: 99,
-			images: [{ url: 'https://prd.place/400?padding=20&id=4' }],
-		},
-	],
-};
-
 export const Default: Story = {
 	args: {
-		...defaultArgs,
+		products: [
+			// @ts-ignore
+			DefaultProductBox.args,
+			{
+				name: 'Second product',
+				badge: { children: 'badge' },
+				price: '$819.00',
+				image: { src: 'https://prd.place/400?padding=20&id=2' },
+			},
+			{
+				name: 'Another product with rather pretty long name',
+				badge: { children: 'other badge' },
+				price: '$1675.00',
+				image: { src: 'https://prd.place/400?padding=20&id=3' },
+			},
+			{
+				name: 'The last one',
+				badge: { children: 'another one' },
+				price: '$0.99',
+				image: { src: 'https://prd.place/400?padding=20&id=4' },
+			},
+		],
 	},
 };

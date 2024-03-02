@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { defaultArgs as LinksDefaultArgs } from '../../molecules/Links/Links.stories';
+import { Default as DefaultLinks } from '../../molecules/Links/Links.stories';
 import { NavBar } from './NavBar';
 
 const meta: Meta<typeof NavBar> = {
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof NavBar>;
 
 export const Default: Story = {
 	args: {
-		links: LinksDefaultArgs.links,
+		links: DefaultLinks.args?.links,
 		children: <i>Optional children is rendered here</i>,
 	},
 };

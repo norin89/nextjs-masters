@@ -1,12 +1,9 @@
 import cx from 'classnames';
-import React, { type ComponentProps, type ElementType, type MouseEventHandler } from 'react';
+import type { ElementType, MouseEventHandler } from 'react';
 import { Loader2 as IconLoader } from 'lucide-react';
+import { type PolymorphicComponentProps } from '@/ui/types';
 
-const DefaultElement = 'button';
-
-interface ButtonBaseProps<C> {
-	/** Component to be rendered. <strong>Must</strong> accept `children` and `className` props. */
-	as?: C;
+type ButtonProps = {
 	/** Button text */
 	children: string;
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'add' | 'remove';
@@ -18,10 +15,9 @@ interface ButtonBaseProps<C> {
 	/** Replaces button content with spinner icon */
 	isPending?: boolean;
 	onClick?: MouseEventHandler<unknown>;
-}
+};
 
-export type ButtonProps<C extends ElementType> = ButtonBaseProps<C> &
-	Omit<ComponentProps<C>, keyof ButtonBaseProps<C>>;
+const DefaultElement = 'button';
 
 export const Button = <C extends ElementType = typeof DefaultElement>({
 	as,
@@ -34,7 +30,7 @@ export const Button = <C extends ElementType = typeof DefaultElement>({
 	onClick,
 	className,
 	...props
-}: ButtonProps<C> & { className?: string }) => {
+}: PolymorphicComponentProps<C, ButtonProps> & { className?: string }) => {
 	const Component = as || DefaultElement;
 	const Icon = icon;
 

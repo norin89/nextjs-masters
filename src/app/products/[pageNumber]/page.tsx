@@ -1,9 +1,11 @@
-import type { Metadata, Route } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import NextLink from 'next/link';
 
 import { getProducts } from '@/api/products';
-import { Header, ProductsList, Section } from '@/ui/organisms';
-import { Links } from '@/ui/molecules';
+import { Header, Section } from '@/ui/organisms';
+import { Products } from '@/components/Products';
+import { Pagination } from '@/components/Pagination';
 
 const PRODUCTS_PER_PAGE = 4;
 
@@ -42,16 +44,14 @@ export default async function ProductsPaginatedPage({
 	return (
 		<Section>
 			<Header level={1} title="All products" />
-			<ProductsList data-testid="products-list" products={productsOnPage} />
-			<nav className="mt-12 flex justify-center" aria-label="pagination">
-				<Links
-					links={Array.from(Array(pagesCount)).map((_, idx) => ({
-						children: `${idx + 1}`,
-						href: `/products/${idx + 1}` as Route,
-					}))}
-					isExact
-				/>
-			</nav>
+			<Products data-testid="products-list" products={productsOnPage} />
+			<Pagination
+				links={Array.from(Array(pagesCount)).map((_, idx) => ({
+					as: NextLink,
+					children: `${idx + 1}`,
+					href: `/products/${idx + 1}`,
+				}))}
+			/>
 		</Section>
 	);
 }

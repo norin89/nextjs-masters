@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 import { SEARCH_QUERY_MIN_LENGTH } from '@/config';
 import { getProductsBySearch } from '@/api/products';
-import { Header, ProductsList, Section } from '@/ui/organisms';
+import { Products } from '@/components/Products';
+import { Header, Section } from '@/ui/organisms';
 
 export const metadata: Metadata = {
 	title: `Search`,
@@ -35,7 +36,7 @@ export default async function SearchPage({
 					)}
 				</p>
 			) : (
-				<ProductsList data-testid="products-list" products={products} />
+				<Products data-testid="products-list" products={products} />
 			)}
 		</Section>
 	);

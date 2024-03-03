@@ -2,7 +2,7 @@ import type { ChangeEventHandler } from 'react';
 import cx from 'classnames';
 import { Search as IconSearch } from 'lucide-react';
 
-export interface SearchProps {
+export interface InputSearchProps {
 	id?: HTMLInputElement['id'];
 	placeholder: string;
 	defaultValue?: string;
@@ -10,7 +10,7 @@ export interface SearchProps {
 	onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const Search = ({
+export const InputSearch = ({
 	id,
 	placeholder,
 	minLength,
@@ -18,7 +18,7 @@ export const Search = ({
 	onChange,
 	className,
 	...props
-}: SearchProps & { className?: string }) => (
+}: InputSearchProps & { className?: string }) => (
 	<div className={cx('relative flex flex-1 flex-shrink-0', className)} {...props}>
 		{id && (
 			<label htmlFor={id} className="sr-only">

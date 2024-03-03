@@ -59,7 +59,7 @@
 	},
 	"overrides": [
 		{
-			"files": ["src/app/**/*.ts?(x)", "middleware.ts"],
+			"files": ["src/**/{page,layout}.ts?(x)", "middleware.ts"],
 			"rules": {
 				"import/no-default-export": "off"
 			}
@@ -68,7 +68,19 @@
 			"files": ["src/**/*.stories.ts?(x)"],
 			"extends": ["plugin:storybook/recommended"],
 			"rules": {
-				"import/no-default-export": "off"
+				"import/no-default-export": "off",
+				"@typescript-eslint/ban-ts-comment": "off"
+			}
+		},
+		{
+			"files": ["src/ui/**/*.ts?(x)"],
+			"rules": {
+				"no-restricted-imports": ["error", {
+					"patterns": [{
+						"group": ["next", "next/*", "@/*", "!@/ui", "!@/ui/*"],
+						"message": "UI components must be 'dummy'. Extend them with logic in 'app' components."
+					}]
+				}]
 			}
 		}
 	],

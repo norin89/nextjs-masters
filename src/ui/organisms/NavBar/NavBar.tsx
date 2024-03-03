@@ -1,11 +1,11 @@
-import { type ReactNode } from 'react';
+import type { ElementType, ReactNode } from 'react';
 import cx from 'classnames';
 
 import { Links } from '@/ui/molecules';
 import { type LinkProps } from '@/ui/atoms';
 
 export type NavBarProps = {
-	links: LinkProps<string>[];
+	links: LinkProps<ElementType>[];
 	children?: ReactNode;
 };
 

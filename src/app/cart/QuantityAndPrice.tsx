@@ -8,6 +8,7 @@ import {
 	useRef,
 	useState,
 } from 'react';
+import cx from 'classnames';
 
 import { CART_MAX_ITEMS, CART_MIN_ITEMS } from '@/config';
 import { type CartItemFragment } from '@/gql/graphql';
@@ -70,14 +71,16 @@ export function QuantityAndPrice({ item }: { item: CartItemFragment }) {
 					onIncrementClick={() => changeQuantity(optimisticQuantity + 1)}
 				/>
 			</form>
-			<div className="order-first inline-flex w-full grow flex-col text-nowrap text-right xl:order-none">
+			<div className="order-first ml-4 inline-flex w-full grow flex-col text-nowrap text-right xl:order-none xl:w-auto xl:grow-0">
 				<span className="text-2xl">{formatPrice(item.product.price * optimisticQuantity)}</span>
-				{optimisticQuantity > 1 && (
-					<span className="text-sm opacity-65">
-						{'per item '}
-						{formatPrice(item.product.price)}
-					</span>
-				)}
+				<span
+					className={cx('text-sm opacity-50', {
+						'h-0 text-transparent': optimisticQuantity <= 1,
+					})}
+				>
+					{'per item '}
+					{formatPrice(item.product.price)}
+				</span>
 			</div>
 			<form action={removeItemFromCartAction}>
 				<input type="hidden" name="productId" value={item.product.id} />

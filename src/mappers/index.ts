@@ -1,5 +1,5 @@
-import NextLink from 'next/link';
 import type { Route } from 'next';
+import NextLink from 'next/link';
 
 import { type ProductFragment } from '@/gql/graphql';
 import { formatPrice } from '@/utils/formatPrice';

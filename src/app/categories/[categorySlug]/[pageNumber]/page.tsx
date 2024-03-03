@@ -4,8 +4,8 @@ import NextLink from 'next/link';
 
 import { getCategories, getCategoryBySlug, getProductsByCategorySlug } from '@/api/products';
 import { Products } from '@/components/Products';
+import { Pagination } from '@/components/Pagination';
 import { Header, Section } from '@/ui/organisms';
-import { Links } from '@/ui/molecules';
 
 const PRODUCTS_PER_PAGE = 4;
 
@@ -68,16 +68,13 @@ export default async function CategoryPage({
 		<Section>
 			<Header level={1} suffix="Categories" title={category.name} lead={category.description} />
 			<Products data-testid="products-list" products={productsOnPage} />
-			<nav className="mt-12 flex justify-center" aria-label="pagination">
-				<Links
-					links={Array.from(Array(pagesCount)).map((_, idx) => ({
-						as: NextLink,
-						children: `${idx + 1}`,
-						href: `/categories/${category.slug}/${idx + 1}`,
-					}))}
-					// isExact
-				/>
-			</nav>
+			<Pagination
+				links={Array.from(Array(pagesCount)).map((_, idx) => ({
+					as: NextLink,
+					children: `${idx + 1}`,
+					href: `/categories/${category.slug}/${idx + 1}`,
+				}))}
+			/>
 		</Section>
 	);
 }

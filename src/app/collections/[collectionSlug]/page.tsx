@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { getCollections, getCollectionBySlug, getProductsByCollectionSlug } from '@/api/products';
 import { Products } from '@/components/Products';
 import { Header, Section } from '@/ui/organisms';
-import { Links } from '@/ui/molecules';
+import { LinksWithActive } from '@/components/LinksWithActive';
 
 export async function generateMetadata({
 	params,
@@ -42,7 +42,7 @@ export default async function CollectionPage({ params }: { params: { collectionS
 	return (
 		<>
 			<Section isTight>
-				<Links
+				<LinksWithActive
 					links={collections.map((collection) => ({
 						as: NextLink,
 						children: collection.name,

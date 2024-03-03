@@ -1,10 +1,10 @@
 'use client';
 
 import React, { Suspense } from 'react';
-import { usePathname } from 'next/navigation';
 import NextLink from 'next/link';
 import { ShoppingBag as IconShoppingBag } from 'lucide-react';
 
+import { useLinksWithActive } from '@/hooks/useLinksWithActive';
 import { NavigationSearch } from '@/components/NavigationSearch';
 import { NavBar } from '@/ui/organisms';
 import { Link, type LinkProps } from '@/ui/atoms';
@@ -16,15 +16,8 @@ export function Navigation({
 	links: LinkProps<typeof NextLink>[];
 	cartCounter: number;
 }) {
-	const pathname = usePathname();
-
 	return (
-		<NavBar
-			links={links.map((link) => ({
-				...link,
-				isActive: `${pathname}/`.startsWith(`${link.href as string}/`),
-			}))}
-		>
+		<NavBar links={useLinksWithActive(links)}>
 			<div className="flex items-center gap-3">
 				<Suspense fallback={<span aria-busy="true" />}>
 					<NavigationSearch />

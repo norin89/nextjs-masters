@@ -59,7 +59,7 @@
 	},
 	"overrides": [
 		{
-			"files": ["src/**/{page,layout}.ts?(x)", "middleware.ts"],
+			"files": ["src/**/{page,layout}.ts?(x)", "middleware.ts", "*.config.{ts?(x),js?(x)}"],
 			"rules": {
 				"import/no-default-export": "off"
 			}

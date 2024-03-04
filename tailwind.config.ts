@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
 	content: [
@@ -21,6 +22,15 @@ const config: Config = {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [
+		plugin(({ addVariant, theme }) => {
+			['2xl', 'xl', 'lg', 'md', 'sm'].forEach((bp) => {
+				addVariant(
+					`-${bp}`,
+					`@media screen and (max-width: ${`${parseInt(theme(`screens.${bp}`)) - 1}px`})`,
+				);
+			});
+		}),
+	],
 };
 export default config;

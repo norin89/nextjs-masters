@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
@@ -6,8 +5,8 @@ import NextLink from 'next/link';
 
 import { CART_COOKIE_NAME } from '@/config';
 import { getCartById } from '@/api/cart';
-import { formatPrice } from '@/utils/formatPrice';
 import { QuantityAndPrice } from '@/app/cart/QuantityAndPrice';
+import { Summary } from '@/app/cart/Summary';
 import { Header, Section } from '@/ui/organisms';
 import { Card } from '@/ui/molecules';
 import { Button, Title } from '@/ui/atoms';
@@ -86,25 +85,7 @@ export default async function ProductsPaginatedPage() {
 						</Card>
 					</div>
 
-					<div className="col-span-3 lg:col-span-1">
-						{/* TODO: Calculate top */}
-						<Card className="sticky top-[100px]">
-							<Title level={2} size={3}>
-								Order summary
-							</Title>
-							{totalPrice && (
-								<div className="py-8">
-									Total Price:
-									<div className="text-5xl text-pink-500">{formatPrice(totalPrice)}</div>
-								</div>
-							)}
-							<hr />
-							<p className="my-4">Shipping will be calculated at the next step.</p>
-							<Button as={NextLink} variant="primary" href="/" isBlock>
-								Checkout
-							</Button>
-						</Card>
-					</div>
+					<Summary totalPrice={totalPrice} />
 				</div>
 			)}
 		</Section>

@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, Suspense } from 'react';
 import type { Metadata, Route } from 'next';
 import NextLink from 'next/link';
 import { Inter } from 'next/font/google';
@@ -6,8 +6,9 @@ import cx from 'classnames';
 
 import './globals.css';
 import { Navigation } from '@/components/Navigation';
-import { getCartFromCookies } from '@/api/cart';
 import { getCategories } from '@/api/products';
+import { NavigationSearch } from '@/components/NavigationSearch';
+import { NavigationCart } from '@/components/NavigationCart';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,8 +25,6 @@ export default async function RootLayout({
 	children: ReactNode;
 }>) {
 	const categories = await getCategories();
-	const cart = await getCartFromCookies();
-	const cartCounter = cart?.items.reduce((acc, item) => acc + item.quantity, 0) ?? 0;
 
 	return (
 		<html lang="en">
@@ -41,8 +40,14 @@ export default async function RootLayout({
 							href: `/categories/${category.slug}` as Route,
 						})),
 					]}
-					cartCounter={cartCounter}
-				/>
+				>
+					<div className="flex items-center gap-3">
+						<Suspense fallback={<span aria-busy="true" />}>
+							<NavigationSearch />
+						</Suspense>
+						<NavigationCart />
+					</div>
+				</Navigation>
 				<main className="flex grow items-center">
 					<div className="grow">{children}</div>
 				</main>

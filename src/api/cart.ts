@@ -7,16 +7,22 @@ import {
 	CartFindOrCreateDocument,
 	CartAddItemDocument,
 	CartRemoveItemDocument,
-	ProductGetByIdDocument,
 	CartChangeItemQuantityDocument,
 	type CartFragment,
 	type CartItem,
 } from '@/gql/graphql';
+import { getProductById } from '@/api/products';
 
 export const getCartById = async (
 	id: CartFragment['id'],
 ): Promise<CartFragment | null | undefined> => {
-	const { cart } = await executeGraphQL({ query: CartGetByIdDocument, variables: { id } });
+	const { cart } = await executeGraphQL({
+		query: CartGetByIdDocument,
+		variables: { id },
+		next: {
+			tags: ['cart'],
+		},
+	});
 
 	return cart;
 };
@@ -33,6 +39,9 @@ export async function getOrCreateCart(): Promise<CartFragment> {
 	const { cartFindOrCreate: cart } = await executeGraphQL({
 		query: CartFindOrCreateDocument,
 		variables: { id: cartId },
+		next: {
+			tags: ['cart'],
+		},
 	});
 
 	if (!cart) {
@@ -51,12 +60,7 @@ export async function addProductToCart(
 	productId: CartItem['product']['id'],
 	quantity: CartItem['quantity'] = 1,
 ) {
-	const { product } = await executeGraphQL({
-		query: ProductGetByIdDocument,
-		variables: {
-			id: productId,
-		},
-	});
+	const product = await getProductById(productId);
 
 	if (!product) {
 		throw new Error(`Product with id ${productId} not found`);
@@ -82,6 +86,9 @@ export async function addProductToCart(
 			productId,
 			quantity,
 		},
+		next: {
+			tags: ['cart'],
+		},
 	});
 }
 
@@ -89,12 +96,7 @@ export async function removeProductFromCart(
 	id: CartFragment['id'],
 	productId: CartItem['product']['id'],
 ) {
-	const { product } = await executeGraphQL({
-		query: ProductGetByIdDocument,
-		variables: {
-			id: productId,
-		},
-	});
+	const product = await getProductById(productId);
 
 	if (!product) {
 		throw new Error(`Product with id ${productId} not found`);
@@ -106,6 +108,9 @@ export async function removeProductFromCart(
 			id,
 			productId,
 		},
+		next: {
+			tags: ['cart'],
+		},
 	});
 }
 
@@ -114,12 +119,7 @@ export async function changeProductQuantityInCart(
 	productId: CartItem['product']['id'],
 	quantity: CartItem['quantity'],
 ) {
-	const { product } = await executeGraphQL({
-		query: ProductGetByIdDocument,
-		variables: {
-			id: productId,
-		},
-	});
+	const product = await getProductById(productId);
 
 	if (!product) {
 		throw new Error(`Product with id ${productId} not found`);
@@ -131,6 +131,9 @@ export async function changeProductQuantityInCart(
 			id,
 			productId,
 			quantity,
+		},
+		next: {
+			tags: ['cart'],
 		},
 	});
 }

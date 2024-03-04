@@ -1,5 +1,7 @@
 'use server';
 
+import { revalidateTag } from 'next/cache';
+
 import {
 	addProductToCart,
 	changeProductQuantityInCart,
@@ -13,6 +15,8 @@ export async function addItemToCartAction(formData: FormData) {
 
 	const cart = await getOrCreateCart();
 	await addProductToCart(cart.id, productId);
+
+	revalidateTag('cart');
 }
 
 export async function removeItemFromCartAction(formData: FormData) {
@@ -21,6 +25,8 @@ export async function removeItemFromCartAction(formData: FormData) {
 
 	const cart = await getOrCreateCart();
 	await removeProductFromCart(cart.id, productId);
+
+	revalidateTag('cart');
 }
 
 export async function changeItemQuantityAction(formData: FormData) {
@@ -30,4 +36,6 @@ export async function changeItemQuantityAction(formData: FormData) {
 
 	const cart = await getOrCreateCart();
 	await changeProductQuantityInCart(cart.id, productId, quantity);
+
+	revalidateTag('cart');
 }

@@ -10,8 +10,12 @@ export function useLinksWithActive(
 ): LinkProps<ElementType>[] {
 	const pathname = usePathname();
 
-	return links.map((link) => ({
-		...link,
-		isActive: `${pathname}/`.startsWith(`${link.href as string}/`),
-	}));
+	return links.map((link) => {
+		const isActive = `${pathname}/`.startsWith(`${link.href as string}/`);
+		return {
+			...link,
+			isActive,
+			'aria-current': isActive ? 'page' : undefined,
+		};
+	});
 }

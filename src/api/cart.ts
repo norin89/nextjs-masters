@@ -57,6 +57,7 @@ export async function addProductToCart(
 	const productInCart = cart?.items.find((item) => item.product.id === productId);
 
 	if (productInCart) {
+		// TODO: Validate if MAX_QUANTITY is not reached before adding
 		await changeProductQuantityInCart(
 			id,
 			productInCart.product.id,

@@ -25,7 +25,7 @@ export function Navigation({
 				<Link as={NextLink} href="/cart" title="Cart" className="relative">
 					<IconShoppingBag />
 					{cartCounter ? (
-						<span className="absolute -end-1 -top-1 inline-flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-pink-400 text-xs font-bold text-white dark:border-gray-900 dark:text-black">
+						<span className="absolute -end-1 -top-1 inline-flex h-6 min-w-6 items-center justify-center rounded-full border-2 border-white bg-pink-400 p-1 text-xs font-bold text-white dark:border-gray-900 dark:text-black">
 							{cartCounter}
 						</span>
 					) : null}

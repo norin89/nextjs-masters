@@ -6,10 +6,9 @@ import NextImage from 'next/image';
 import { getProductById } from '@/api/products';
 import { formatPrice } from '@/utils/formatPrice';
 import { RelatedProducts } from '@/components/RelatedProducts';
-import { AddToCartButton } from '@/components/AddToCartButton';
+import { AddToCart } from '@/components/AddToCart';
 import { Header, Section } from '@/ui/organisms';
 import { Badge, Title } from '@/ui/atoms';
-import { addItemToCartAction } from '@/actions/cart';
 
 export async function generateMetadata({
 	params,
@@ -61,10 +60,7 @@ export default async function ProductPage({ params }: { params: { productId: str
 							</strong>
 						</header>
 						<p className="my-4">{product.description}</p>
-						<form action={addItemToCartAction}>
-							<input type="hidden" name="productId" value={product.id} />
-							<AddToCartButton />
-						</form>
+						<AddToCart productId={product.id} />
 					</div>
 				</div>
 			</Section>

@@ -3,7 +3,7 @@ import type { ElementType, MouseEventHandler } from 'react';
 import { Loader2 as IconLoader } from 'lucide-react';
 import { type PolymorphicComponentProps } from '@/ui/types';
 
-type ButtonProps = {
+type ButtonBaseProps = {
 	/** Button text */
 	children: string;
 	variant?: 'primary' | 'secondary' | 'tertiary' | 'add' | 'remove';
@@ -16,6 +16,8 @@ type ButtonProps = {
 	isPending?: boolean;
 	onClick?: MouseEventHandler<unknown>;
 };
+
+export type ButtonProps<C extends ElementType> = PolymorphicComponentProps<C, ButtonBaseProps>;
 
 const DefaultElement = 'button';
 
@@ -30,7 +32,7 @@ export const Button = <C extends ElementType = typeof DefaultElement>({
 	onClick,
 	className,
 	...props
-}: PolymorphicComponentProps<C, ButtonProps> & { className?: string }) => {
+}: ButtonProps<C> & { className?: string }) => {
 	const Component = as || DefaultElement;
 	const Icon = icon;
 

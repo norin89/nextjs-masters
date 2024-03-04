@@ -5,7 +5,7 @@ import { Title, Badge, Image, type ImageProps, type BadgeProps } from '@/ui/atom
 import type { PolymorphicComponentProps } from '@/ui/types';
 
 type ProductBoxBaseProps = {
-	image: ImageProps;
+	image: ImageProps<ElementType>;
 	name: string;
 	badge?: BadgeProps;
 	price?: string;
@@ -41,8 +41,8 @@ export const ProductBox = <C extends ElementType = typeof DefaultElement>({
 				<div className="overflow-hidden border-b border-gray-200 bg-white p-4 text-gray-600 dark:border-gray-800">
 					<Image
 						className="aspect-square w-full transition-transform duration-500 group-hover:scale-110"
-						src={image.src}
-						alt={image.alt || name}
+						alt={name}
+						{...image}
 					/>
 				</div>
 			)}

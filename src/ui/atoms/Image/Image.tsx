@@ -3,10 +3,12 @@ import type { ElementType } from 'react';
 
 import { type PolymorphicComponentProps } from '@/ui/types';
 
-export type ImageProps = {
+type ImageBaseProps = {
 	src: string;
 	alt?: string;
 };
+
+export type ImageProps<C extends ElementType> = PolymorphicComponentProps<C, ImageBaseProps>;
 
 const DefaultElement = 'img';
 
@@ -18,7 +20,7 @@ export const Image = <C extends ElementType = typeof DefaultElement>({
 	alt,
 	className,
 	...props
-}: PolymorphicComponentProps<C, ImageProps> & { className?: string }) => {
+}: ImageProps<C> & { className?: string }) => {
 	const Component = as || DefaultElement;
 
 	return (

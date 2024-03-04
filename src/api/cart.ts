@@ -29,6 +29,7 @@ export const getCartFromCookies = async (): Promise<CartFragment | null | undefi
 
 export async function getOrCreateCart(): Promise<CartFragment> {
 	const cartId = cookies().get(CART_COOKIE_NAME)?.value;
+
 	const { cartFindOrCreate: cart } = await executeGraphQL({
 		query: CartFindOrCreateDocument,
 		variables: { id: cartId },
@@ -38,7 +39,9 @@ export async function getOrCreateCart(): Promise<CartFragment> {
 		throw new Error('Failed to create cart!');
 	}
 
-	cookies().set(CART_COOKIE_NAME, cart.id);
+	if (!cartId) {
+		cookies().set(CART_COOKIE_NAME, cart.id);
+	}
 
 	return cart;
 }

@@ -4,6 +4,7 @@ import {
 	type ChangeEvent,
 	type FocusEvent,
 	startTransition,
+	useEffect,
 	useOptimistic,
 	useRef,
 	useState,
@@ -25,6 +26,10 @@ export function QuantityAndPrice({ item }: { item: CartItemFragment }) {
 		item.quantity,
 		(_state, newQuantity: number) => newQuantity,
 	);
+
+	useEffect(() => {
+		setStateQuantity(optimisticQuantity);
+	}, [optimisticQuantity]);
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const newQuantity = parseInt(e.target.value);

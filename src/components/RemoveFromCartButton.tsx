@@ -16,6 +16,7 @@ export function RemoveFromCartButton() {
 			disabled={status.pending}
 			isPending={status.pending}
 			title="Remove from cart"
+			data-testid="remove-from-cart-button"
 		>
 			{''}
 		</Button>

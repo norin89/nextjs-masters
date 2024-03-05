@@ -49,7 +49,7 @@ export function QuantityAndPrice({ item }: { item: CartItemFragment }) {
 	};
 
 	const changeQuantity = async (newQuantity: number) => {
-		if (!formRef.current) return;
+		if (!formRef.current || isNaN(newQuantity)) return;
 
 		const formData = new FormData(formRef.current);
 		formData.set('quantity', `${newQuantity}`);

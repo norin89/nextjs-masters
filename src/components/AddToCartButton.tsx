@@ -15,6 +15,7 @@ export function AddToCartButton() {
 			icon={IconPlus}
 			disabled={status.pending}
 			isPending={status.pending}
+			data-testid="add-to-cart-button"
 		>
 			Add to cart
 		</Button>

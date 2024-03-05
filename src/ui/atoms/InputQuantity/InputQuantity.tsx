@@ -41,6 +41,7 @@ export const InputQuantity = ({
 					title="Decrease quantity"
 					disabled={isMinExceeded}
 					onClick={onDecrementClick}
+					data-testid="decrement"
 				>
 					{''}
 				</Button>
@@ -52,10 +53,14 @@ export const InputQuantity = ({
 					min={minQuantity}
 					max={maxQuantity}
 					autoComplete="off"
-					value={typeof quantity === 'number' ? quantity : ''}
+					value={quantity ?? ''}
 					onChange={onChange}
 					onBlur={onBlur}
 				/>
+				{/* Hidden span due to predefined tests */}
+				<span className="max-w-0 overflow-hidden" data-testid="quantity">
+					{quantity ?? ''}
+				</span>
 				<Button
 					className="rounded-l-none"
 					type="button"
@@ -64,6 +69,7 @@ export const InputQuantity = ({
 					title="Increase quantity"
 					disabled={isMaxExceeded}
 					onClick={onIncrementClick}
+					data-testid="increment"
 				>
 					{''}
 				</Button>

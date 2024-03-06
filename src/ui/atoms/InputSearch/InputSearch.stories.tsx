@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
 import { InputSearch } from './InputSearch';
 
@@ -16,5 +17,6 @@ export const Default: Story = {
 		placeholder: 'Search',
 		minLength: 3,
 		defaultValue: '',
+		onChange: fn(),
 	},
 };

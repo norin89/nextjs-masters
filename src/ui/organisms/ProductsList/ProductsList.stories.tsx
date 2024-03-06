@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Default as DefaultProductBox } from '../../molecules/ProductsBox/ProductBox.stories';
+import { Default as DefaultProductBox } from '../../molecules/ProductBox/ProductBox.stories';
 import { ProductsList } from './ProductsList';
 
 const meta: Meta<typeof ProductsList> = {

@@ -1,23 +1,25 @@
-import type { ElementType, ReactNode } from 'react';
+import type { ElementType, MouseEventHandler, ReactNode } from 'react';
 import cx from 'classnames';
 import type { PolymorphicComponentProps } from '@/ui/types';
 
 type LinkBaseProps = {
 	children: ReactNode;
 	isActive?: boolean;
+	onClick?: MouseEventHandler<unknown>;
 };
 
 export type LinkProps<C extends ElementType> = PolymorphicComponentProps<C, LinkBaseProps>;
 
 const DefaultElement = 'a';
 
-/** Polymorphic link component - in `as` prop can be passed component to be rendered -
+/** Polymorphic link component - `as` prop takes component to be rendered -
  * e.g. `Link` component from frameworks like `Next` or `Gatsby`.  */
 export const Link = <C extends ElementType = typeof DefaultElement>({
 	as,
 	children,
 	isActive,
 	className,
+	onClick,
 	...props
 }: LinkProps<C> & { className?: string }) => {
 	const Component = as || DefaultElement;
@@ -32,6 +34,7 @@ export const Link = <C extends ElementType = typeof DefaultElement>({
 				},
 				className,
 			)}
+			onClick={onClick}
 			{...props}
 		>
 			{children}

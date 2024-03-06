@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ProductBox } from './ProductBox';
 
 const meta: Meta<typeof ProductBox> = {
-	title: 'Molecules / ProductsBox',
+	title: 'Molecules / ProductBox',
 	component: ProductBox,
 	decorators: [
 		(Story) => (

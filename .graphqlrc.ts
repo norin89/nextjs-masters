@@ -1,14 +1,16 @@
-const nextEnv = require('@next/env');
+import { type CodegenConfig } from '@graphql-codegen/cli';
+import { loadEnvConfig } from '@next/env';
 
-nextEnv.loadEnvConfig(process.cwd());
+loadEnvConfig(process.cwd());
 
-const config = {
+const config: CodegenConfig = {
 	overwrite: true,
 	schema: process.env.GRAPHQL_URL,
 	ignoreNoDocuments: true,
 	documents: 'src/graphql/*.graphql',
 	generates: {
 		'src/gql/': {
+			plugins: [],
 			preset: 'client',
 			presetConfig: {
 				fragmentMasking: false,
@@ -19,10 +21,11 @@ const config = {
 				defaultScalarType: 'unknown',
 				skipTypename: true,
 				documentMode: 'string',
+				scalars: {
+					DateTime: 'Date',
+				},
 			},
-			plugins: [],
 		},
 	},
 };
-
-module.exports = config;
+export default config;

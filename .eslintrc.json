@@ -65,6 +65,13 @@
 			}
 		},
 		{
+			"files": ["src/**/opengraph-image.ts?(x)"],
+			"rules": {
+				"import/no-default-export": "off",
+				"@next/next/no-img-element": "off"
+			}
+		},
+		{
 			"files": ["src/**/*.stories.ts?(x)"],
 			"extends": ["plugin:storybook/recommended"],
 			"rules": {

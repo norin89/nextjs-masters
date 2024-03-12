@@ -56,7 +56,7 @@ export function Reviews({
 							If you’ve used this product, share your thoughts with other customers
 						</p>
 					</div>
-					<form action={handleFormAction} ref={formRef}>
+					<form action={handleFormAction} ref={formRef} data-testid="add-review-form">
 						<input type="hidden" name="productId" value={productId} />
 						<div className="mb-4">
 							<InputRating name="rating" placeholder="Your rating:" isRequired />

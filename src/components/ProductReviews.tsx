@@ -8,7 +8,11 @@ import { Review, type ReviewProps } from '@/ui/molecules';
 import { ReviewsList } from '@/ui/organisms';
 import { Button } from '@/ui/atoms';
 
-export const ProductReviews = ({ reviews = [] }: { reviews: ReviewFragment[] }) => {
+export const ProductReviews = ({
+	reviews = [],
+}: {
+	reviews: (ReviewFragment & { isSending?: boolean })[];
+}) => {
 	const [visibleReviewsCount, setVisibleReviewsCount] = useState(DEFAULT_VISIBLE_REVIEWS);
 
 	const visibleReviews = reviews.slice(0, visibleReviewsCount);
@@ -23,6 +27,7 @@ export const ProductReviews = ({ reviews = [] }: { reviews: ReviewFragment[] }) 
 							date={review.createdAt}
 							rating={review.rating as ReviewProps['rating']}
 							key={review.id}
+							className={review.isSending ? 'opacity-50' : ''}
 						>
 							{review.description}
 						</Review>

@@ -13,6 +13,9 @@ export const getReviewsByProductId = async (
 	const graphqlResponse = await executeGraphQL({
 		query: ReviewsGetByProductIdDocument,
 		variables: { productId },
+		next: {
+			tags: ['reviews'],
+		},
 	});
 	return graphqlResponse.product?.reviews.map((review) => ({
 		...review,

@@ -1,12 +1,49 @@
-import { type ProductFragment } from '@/gql/graphql';
-import { getReviewsByProductId } from '@/api/reviews';
+'use client';
+
+import { useOptimistic, useRef } from 'react';
+
+import { type ProductFragment, type ReviewFragment } from '@/gql/graphql';
 import { ProductReviews } from '@/components/ProductReviews';
 import { Card } from '@/ui/molecules';
 import { Button, Input, InputRating, Title } from '@/ui/atoms';
 import { addReviewAction } from '@/actions/reviews';
 
-export async function SectionReviews({ productId }: { productId: ProductFragment['id'] }) {
-	const reviews = (await getReviewsByProductId(productId))?.reverse() || [];
+export function Reviews({
+	productId,
+	reviews,
+}: {
+	productId: ProductFragment['id'];
+	reviews: ReviewFragment[];
+}) {
+	const formRef = useRef<HTMLFormElement>(null);
+
+	const [optimisticReviews, addOptimisticReview] = useOptimistic(
+		reviews,
+		(state, newReview: ReviewFragment) => [
+			{
+				...newReview,
+				isSending: true,
+			},
+			...state,
+		],
+	);
+
+	const handleFormAction = async (formData: FormData) => {
+		addOptimisticReview({
+			id: '-1',
+			author: formData.get('name') as string,
+			email: formData.get('email') as string,
+			description: formData.get('content') as string,
+			rating: parseInt(formData.get('rating') as string),
+			title: formData.get('headline') as string,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		});
+
+		formRef.current?.reset();
+
+		await addReviewAction(formData);
+	};
 
 	return (
 		<div className="align-center grid grid-flow-row-dense grid-cols-3 gap-4">
@@ -19,7 +56,7 @@ export async function SectionReviews({ productId }: { productId: ProductFragment
 							If you’ve used this product, share your thoughts with other customers
 						</p>
 					</div>
-					<form action={addReviewAction}>
+					<form action={handleFormAction} ref={formRef}>
 						<input type="hidden" name="productId" value={productId} />
 						<div className="mb-4">
 							<InputRating name="rating" placeholder="Your rating:" isRequired />
@@ -43,7 +80,11 @@ export async function SectionReviews({ productId }: { productId: ProductFragment
 				</Card>
 			</div>
 			<div className="col-span-3 lg:col-span-2 lg:p-4">
-				{reviews.length > 0 ? <ProductReviews reviews={reviews} /> : <p>No reviews yet...</p>}
+				{reviews.length > 0 ? (
+					<ProductReviews reviews={optimisticReviews} />
+				) : (
+					<p>No reviews yet...</p>
+				)}
 			</div>
 		</div>
 	);

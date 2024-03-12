@@ -32,7 +32,7 @@ export const ProductReviews = ({ reviews = [] }: { reviews: ReviewFragment[] }) 
 			<div className="mt-12">
 				{visibleReviewsCount < reviews.length && (
 					<Button
-						variant="primary"
+						variant="tertiary"
 						onClick={() =>
 							setVisibleReviewsCount((prevCount) => prevCount + DEFAULT_VISIBLE_REVIEWS)
 						}

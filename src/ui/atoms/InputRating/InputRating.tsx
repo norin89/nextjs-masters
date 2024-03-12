@@ -21,9 +21,9 @@ export const InputRating = ({
 	className,
 	...props
 }: InputRatingProps & { className?: string }) => (
-	<div className={cx('relative flex flex-1 flex-shrink-0 items-center', className)} {...props}>
+	<div className={cx('relative', className)} {...props}>
 		{placeholder && <strong className="mr-2 font-medium">{placeholder}</strong>}
-		<div className="my-1 flex flex-row-reverse items-center space-x-1 text-gray-300 dark:text-gray-500">
+		<div className="my-1 flex flex-row-reverse items-center justify-end space-x-1 text-gray-300 dark:text-gray-500">
 			{Array.from({ length: 5 }).map((_, idx) => {
 				const rating = 5 - idx;
 				return (

@@ -9,6 +9,7 @@ const config = {
 	documents: 'src/graphql/*.graphql',
 	generates: {
 		'src/gql/': {
+			plugins: [],
 			preset: 'client',
 			presetConfig: {
 				fragmentMasking: false,
@@ -19,8 +20,10 @@ const config = {
 				defaultScalarType: 'unknown',
 				skipTypename: true,
 				documentMode: 'string',
+				scalars: {
+					DateTime: 'Date',
+				},
 			},
-			plugins: [],
 		},
 	},
 };

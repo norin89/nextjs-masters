@@ -9,4 +9,5 @@ fragment Product on Product {
         url
     }
     price
+    rating
 }

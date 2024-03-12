@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useDebounce } from 'use-debounce';
 
 import { SEARCH_DEBOUNCE_TIME, SEARCH_QUERY_MIN_LENGTH } from '@/config';
-import { InputSearch } from '@/ui/atoms';
+import { Input } from '@/ui/atoms';
 
 export function NavigationSearch(props: {}) {
 	const searchParams = useSearchParams();
@@ -36,11 +36,14 @@ export function NavigationSearch(props: {}) {
 
 	return (
 		<form onSubmit={handleSubmit} className="relative flex flex-1 flex-shrink-0" {...props}>
-			<InputSearch
+			<Input
+				name="search"
+				type="search"
 				placeholder="Search"
 				defaultValue={URLQuery}
 				onChange={handleChange}
 				minLength={SEARCH_QUERY_MIN_LENGTH}
+				isRequired
 			/>
 		</form>
 	);

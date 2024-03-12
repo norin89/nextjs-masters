@@ -5,6 +5,7 @@ import NextImage from 'next/image';
 
 import { getProductById } from '@/api/products';
 import { formatPrice } from '@/utils/formatPrice';
+import { ReviewsSection } from '@/components/sections/ReviewsSection';
 import { RelatedProducts } from '@/components/RelatedProducts';
 import { AddToCart } from '@/components/AddToCart';
 import { Header, Section } from '@/ui/organisms';
@@ -65,6 +66,12 @@ export default async function ProductPage({ params }: { params: { productId: str
 				</div>
 			</Section>
 			<Section isOdd>
+				<Header title="Reviews"></Header>
+				<Suspense fallback={<span aria-busy="true" />}>
+					<ReviewsSection productId={product.id} />
+				</Suspense>
+			</Section>
+			<Section>
 				<Header title="Related products"></Header>
 				<Suspense fallback={<span aria-busy="true" />}>
 					<RelatedProducts data-testid="related-products" />

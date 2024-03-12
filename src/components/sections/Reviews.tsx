@@ -3,9 +3,10 @@ import { getReviewsByProductId } from '@/api/reviews';
 import { ProductReviews } from '@/components/ProductReviews';
 import { Card } from '@/ui/molecules';
 import { Button, Input, InputRating, Title } from '@/ui/atoms';
+import { addReviewAction } from '@/actions/reviews';
 
 export async function SectionReviews({ productId }: { productId: ProductFragment['id'] }) {
-	const reviews = (await getReviewsByProductId(productId)) || [];
+	const reviews = (await getReviewsByProductId(productId))?.reverse() || [];
 
 	return (
 		<div className="align-center grid grid-flow-row-dense grid-cols-3 gap-4">
@@ -18,7 +19,8 @@ export async function SectionReviews({ productId }: { productId: ProductFragment
 							If you’ve used this product, share your thoughts with other customers
 						</p>
 					</div>
-					<form>
+					<form action={addReviewAction}>
+						<input type="hidden" name="productId" value={productId} />
 						<div className="mb-4">
 							<InputRating name="rating" placeholder="Your rating:" isRequired />
 						</div>
@@ -32,7 +34,7 @@ export async function SectionReviews({ productId }: { productId: ProductFragment
 							<Input name="name" type="text" placeholder="Your name" isRequired />
 						</div>
 						<div className="mb-2">
-							<Input name="email" type="text" placeholder="Email" isRequired />
+							<Input name="email" type="email" placeholder="Email" isRequired />
 						</div>
 						<Button variant="primary" type="submit" className="mt-4">
 							Add your review

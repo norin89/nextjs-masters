@@ -1,9 +1,8 @@
-import { type CodegenConfig } from '@graphql-codegen/cli';
-import { loadEnvConfig } from '@next/env';
+const nextEnv = require('@next/env');
 
-loadEnvConfig(process.cwd());
+nextEnv.loadEnvConfig(process.cwd());
 
-const config: CodegenConfig = {
+const config = {
 	overwrite: true,
 	schema: process.env.GRAPHQL_URL,
 	ignoreNoDocuments: true,
@@ -28,4 +27,5 @@ const config: CodegenConfig = {
 		},
 	},
 };
-export default config;
+
+module.exports = config;

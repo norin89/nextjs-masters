@@ -6,7 +6,7 @@ import { compilerOptions } from '../tsconfig.json';
 const normalizePath = (p: string): string => p.split('/*').shift() || '';
 
 const config: StorybookConfig = {
-	stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
+	stories: ['../src/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))'],
 	addons: [
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',

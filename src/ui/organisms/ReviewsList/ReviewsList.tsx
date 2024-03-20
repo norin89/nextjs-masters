@@ -41,3 +41,6 @@ type ReviewsList = typeof ReviewsListRoot & {
 
 export const ReviewsList = ReviewsListRoot as ReviewsList;
 ReviewsList.Item = ReviewsListItem;
+
+ReviewsListItem.displayName = 'ReviewsList.Item';
+ReviewsListRoot.displayName = 'ReviewsList';

@@ -11,7 +11,7 @@ export function useLinksWithActive(
 	const pathname = usePathname();
 
 	return links.map((link) => {
-		const isActive = `${pathname}/`.startsWith(`${link.href as string}/`);
+		const isActive = `${pathname}/`.startsWith(`${link.href}/`);
 		return {
 			...link,
 			isActive,

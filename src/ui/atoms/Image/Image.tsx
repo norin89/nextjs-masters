@@ -24,6 +24,6 @@ export const Image = <C extends ElementType = typeof DefaultElement>({
 	const Component = as || DefaultElement;
 
 	return (
-		<Component className={cx('block w-full', className)} {...props} src={src} alt={alt || ''} />
+		<Component {...props} className={cx('block w-full', className)} src={src} alt={alt || ''} />
 	);
 };

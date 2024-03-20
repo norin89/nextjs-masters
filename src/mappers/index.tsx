@@ -20,4 +20,5 @@ export const mapProductToProductBoxProps = (
 	},
 	badge: product.categories[0] && { children: product.categories[0].name },
 	price: formatPrice(product.price),
+	rating: product.rating || undefined,
 });

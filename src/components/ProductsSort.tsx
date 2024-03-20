@@ -31,10 +31,18 @@ export const ProductsSort = ({ ...props }: { className?: string }) => {
 				onChange={handleSortChange}
 			>
 				<option value="">Default order</option>
-				<option value="price_asc">Price: from lowest</option>
-				<option value="price_desc">Price: from highest</option>
-				<option value="rating_asc">Rating: from lowest</option>
-				<option value="rating_desc">Rating: from highest</option>
+				<option value="price_asc" data-testid="sort-by-price">
+					Price: from lowest
+				</option>
+				<option value="price_desc" data-testid="sort-by-price">
+					Price: from highest
+				</option>
+				<option value="rating_asc" data-testid="sort-by-rating">
+					Rating: from lowest
+				</option>
+				<option value="rating_desc" data-testid="sort-by-rating">
+					Rating: from highest
+				</option>
 			</select>
 		</div>
 	);

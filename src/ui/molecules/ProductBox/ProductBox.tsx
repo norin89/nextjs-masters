@@ -52,7 +52,7 @@ export const ProductBox = <C extends ElementType = typeof DefaultElement>({
 				<div className="flex w-full flex-wrap items-center justify-between">
 					{badge && <Badge {...badge} />}
 					{rating && (
-						<span className="text-xs">
+						<span className="text-xs" data-testid="product-rating">
 							<svg
 								className="ml-auto mr-1 inline-block h-4 w-4 align-text-bottom text-yellow-500"
 								fill="currentColor"
@@ -67,7 +67,10 @@ export const ProductBox = <C extends ElementType = typeof DefaultElement>({
 				<Title level={2} size={5} className="mt-2 text-lg">
 					{name}
 				</Title>
-				<strong className="mt-auto self-end pt-4 text-2xl font-medium text-pink-500">
+				<strong
+					className="mt-auto self-end pt-4 text-2xl font-medium text-pink-500"
+					data-testid="product-price"
+				>
 					{price}
 				</strong>
 			</div>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 import NextLink from 'next/link';
 
@@ -72,7 +72,7 @@ export default async function CategoryPage({
 				links={Array.from(Array(pagesCount)).map((_, idx) => ({
 					as: NextLink,
 					children: `${idx + 1}`,
-					href: `/categories/${category.slug}/${idx + 1}`,
+					href: `/categories/${category.slug}/${idx + 1}` as Route,
 				}))}
 			/>
 		</Section>

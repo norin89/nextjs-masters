@@ -70,7 +70,7 @@ export default async function ProductsPaginatedPage({
 				links={Array.from(Array(pagesCount)).map((_, idx) => ({
 					as: NextLink,
 					children: `${idx + 1}`,
-					href: `/products/${idx + 1}`,
+					href: { pathname: `/products/${idx + 1}`, query: searchParams },
 				}))}
 			/>
 		</Section>

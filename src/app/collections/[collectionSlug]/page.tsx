@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Route } from 'next';
 import { notFound } from 'next/navigation';
 
 import NextLink from 'next/link';
@@ -46,7 +46,7 @@ export default async function CollectionPage({ params }: { params: { collectionS
 					links={collections.map((collection) => ({
 						as: NextLink,
 						children: collection.name,
-						href: `/collections/${collection.slug}`,
+						href: `/collections/${collection.slug}` as Route,
 					}))}
 				/>
 			</Section>

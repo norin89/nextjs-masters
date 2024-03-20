@@ -33,6 +33,8 @@ export const ProductsSort = ({ ...props }: { className?: string }) => {
 				<option value="">Default order</option>
 				<option value="price_asc">Price: from lowest</option>
 				<option value="price_desc">Price: from highest</option>
+				<option value="rating_asc">Rating: from lowest</option>
+				<option value="rating_desc">Rating: from highest</option>
 			</select>
 		</div>
 	);

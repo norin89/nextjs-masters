@@ -27,12 +27,22 @@ export const Default: Story = {
 					<Review {...(DefaultReview.args as ReviewProps)} />
 				</ReviewsList.Item>
 				<ReviewsList.Item>
-					<Review author="Another Author" date={new Date('2024-04-03')} rating={5}>
+					<Review
+						author="Another Author"
+						date={new Date('2024-04-03')}
+						rating={5}
+						title="Another title"
+					>
 						Another review content...
 					</Review>
 				</ReviewsList.Item>
 				<ReviewsList.Item>
-					<Review author="Last One" date={new Date('2024-04-01')} rating={4}>
+					<Review
+						author="Last One"
+						date={new Date('2024-04-01')}
+						rating={4}
+						title="My honest review"
+					>
 						Last review content...
 					</Review>
 				</ReviewsList.Item>

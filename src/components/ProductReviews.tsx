@@ -26,6 +26,7 @@ export const ProductReviews = ({
 							author={review.author}
 							date={review.createdAt}
 							rating={review.rating as ReviewProps['rating']}
+							title={review.title}
 							key={review.id}
 							className={review.isSending ? 'opacity-50' : ''}
 						>

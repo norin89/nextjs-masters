@@ -15,6 +15,7 @@ export const Default: Story = {
 		date: new Date('2024-03-06T18:06:53'),
 		author: 'John Doe',
 		rating: 3,
+		title: 'Review title',
 		children: 'Content of the review...',
 	},
 };

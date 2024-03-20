@@ -4,6 +4,7 @@ export type ReviewProps = {
 	date?: Date;
 	author: string;
 	rating: 1 | 2 | 3 | 4 | 5;
+	title: string;
 	/** Description of the review */
 	children: string;
 };
@@ -13,15 +14,16 @@ export const Review = ({
 	author,
 	date,
 	rating,
+	title,
 	className,
 	...props
 }: ReviewProps & { className?: string }) => (
 	<div {...props} className={className}>
-		<div className="mb-2">
-			<p className="font-medium">
+		<div className="mb-4">
+			<p className="text-sm font-semibold">
 				{author}
 				{date && (
-					<time dateTime={date.toISOString()} className="block text-sm opacity-65">
+					<time dateTime={date.toISOString()} className="block font-normal opacity-65">
 						{/* TODO: Add `dateFormatter` prop to pass function for date formatting */}
 						{date.toLocaleDateString('en-US', {
 							year: 'numeric',
@@ -49,6 +51,7 @@ export const Review = ({
 				))}
 			</div>
 		</div>
+		<p className="mb-1 font-medium">{title}</p>
 		<p className="mb-2 text-gray-500 dark:text-gray-400">{children}</p>
 	</div>
 );
